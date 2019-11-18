@@ -1,0 +1,30 @@
+syntax: glob
+
+#Hidden files
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+
+#project specific
+bower_components/
+node_modules/
+.sass-cache/
+.tscache/
+package-lock.json
+.cache/
+
+#Conflict files
+*.orig
+*.resolve
+
+#Compiled files
+.publish/
+*.map
+
+#Log files
+*.log
+*.debug
+
+# Visual Studio, VS-Code Settings
+.vscode/
+.vs

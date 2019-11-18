@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        // "declarationDir": "./.publish",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "jsx": "react",
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "outDir": "./.publish",
+        // "outFile": "./.publish/index.js",
+        "pretty": true,
+        "sourceMap": false,
+        "inlineSourceMap": false,
+        "strict": true,
+        "strictNullChecks": true,
+        "target": "es5"
+    },
+    "include": [
+        "./src",
+        "./global.d.ts"
+    ],
+    "exclude": [
+        "./tests/",
+        "node_modules",
+        ".publish"
+    ]
+}
