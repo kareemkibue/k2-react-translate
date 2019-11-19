@@ -1,12 +1,12 @@
 {
-    "name": "k2-react-utils",
-    "version": "0.13.1",
-    "description": "A collection of handy React/JavaScript utilities",
+    "name": "k2-react-translate",
+    "version": "0.1.0",
+    "description": "A translation library with routing",
     "main": "index.js",
     "types": "index.d.ts",
     "repository": {
         "type": "git",
-        "url": "https://github.com/kareemkibue/k2-react-utils.git"
+        "url": "https://github.com/kareemkibue/k2-react-translate.git"
     },
     "author": "Kareem Kibue <mail@kareemkibue.com>",
     "license": "MIT",
@@ -24,8 +24,7 @@
     },
     "peerDependencies": {
         "react": "*",
-        "react-redux": "*",
-        "xml-js": "*"
+        "react-router-dom": "*"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "4.2.4",
@@ -33,7 +32,7 @@
         "@types/jest": "24.0.9",
         "@types/node": "12.12.8",
         "@types/react": "16.9.11",
-        "@types/react-redux": "7.1.5",
+        "@types/react-router-dom": "5.1.2",
         "@types/react-test-renderer": "16.9.1",
         "babel-jest": "24.9.0",
         "copyfiles": "2.1.1",
@@ -45,10 +44,9 @@
         "react": "16.12.0",
         "react-dom": "16.12.0",
         "react-redux": "7.1.3",
+        "react-router-dom": "5.1.2",
         "react-test-renderer": "16.12.0",
-        "redux": "4.0.4",
         "ts-jest": "24.1.0",
-        "typescript": "3.7.2",
-        "xml-js": "1.6.11"
+        "typescript": "3.7.2"
     }
 }
