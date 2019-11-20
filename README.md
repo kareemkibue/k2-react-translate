@@ -8,8 +8,8 @@ A simple, easy-to-use translation library based on Context API, with optional lo
 ## Table of Contents
 - [Problem Statement](#problem-statement)
 - [Setup](#setup)
-- [Documentation (Translation)](#documentation-(translation))
-- [Documentation (Localized Routing)](#documentation-(localized-routing))
+- [Documentation (Translation)](#documentation-translation)
+- [Documentation (Localized Routing)](#documentation-localized-routing)
 - [Development](#development)
 - [Known Issues](#known-issues)
 - [Changelog](#changelog)
