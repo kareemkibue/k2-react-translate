@@ -81,7 +81,10 @@ module.exports = {
 			template: paths.indexHtml,
 		}),
 		new FriendlyErrorsWebpackPlugin({
-			clearConsole: true,
+            clearConsole: true,
+             messages: [
+                `Local: http://localhost:${PORT}`          
+            ],
 		}),
 		new CircularDependencyPlugin({
 			exclude: /a\.js|node_modules/,
