@@ -2,7 +2,6 @@ import * as React from 'react';
 import { LocaleContext } from './LocaleContext';
 
 interface IProps {
-	onSwitch?: (language: string) => void; // * Raise the current state back to the parent component
 	onClick: (switchLanguage: (language: string) => void) => void;
 }
 
