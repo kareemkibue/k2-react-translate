@@ -85,7 +85,6 @@ import { LocaleProvider } from 'k2-react-translate'
 import { App } from './App';
 import translations from './translations.json';  
 
-
 ReactDOM.render(
     <LocaleProvider translations={translations} languages={['en','fr']}>
         <App/>
@@ -109,7 +108,7 @@ Props | Type | Description
 `defaultLanguage` | string (optional) | Default language, Must be included in the `languages` array above
 
 
-*Usage*
+#### Usage
 
 See [Project Setup](Project-Setup) above.
 
@@ -121,7 +120,7 @@ A custom hook for use in Function Components.
 
 **Dependencies:** `react@16.8.0+`, `react-dom@16.8.0+`
 
-*Usage*
+#### Usage
 ```tsx
 // MyComponent.tsx
 import * as React from 'react'; // standard TypeScript syntax
@@ -133,7 +132,12 @@ const links = {
 }
 
 const MyComponent: React.FunctionComponent<{}>=()=>{
-    const { translate, translateAndParse, language } = useTranslate();
+    const { translate, translateAndParse, language, changeLanguage } = useTranslate();
+
+    const handleClick = ():void => {
+         // change language to French
+        changeLanguage('fr');
+    }
 
     return <div>
         {translate('HELLO')}
@@ -147,6 +151,10 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
         {translateAndParse('PRIVACY_POLICY', {link: links[language] })}
         // "<a href='/en/privacy-policy'>Privacy Policy</a>" (en) - ReactElement
         // "<a href='/fr/privacy-policy'>Politique de Confidentialité</a>"  (fr) - ReactElement
+
+        <button onClick={handleClick}>
+            Change Language
+        </button>
     </div>;
 }
 ```
@@ -168,7 +176,7 @@ Props | Type | Description
 `render` | function (optional) | render prop, returning `(language:string)=>ReactNode`
 `parseHtml` | boolean (optional), `default=false` | option to sanitize and parse stringified HTML set in the `translations.json`
 
-*Usage*
+#### Usage
 ```tsx
 // MyComponent.tsx
 import * as React from 'react'; // standard TypeScript syntax
