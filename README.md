@@ -150,7 +150,7 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 A React component that wraps `<LocaleContext.Consumer/>` that performs translations, given translation keys as prop arguments.
 
-If using `react v16.8.0+`, I'd strongly recommend using the `useTranslate` hook [above](#useTranslate) instead. `useTranslate` works in the same way but provides for cleaner and less verbose use. 
+If using `react v16.8.0+`, I'd strongly recommend using the `useTranslate` hook [above](#usetranslate---source) instead. `useTranslate` works in the same way but provides for cleaner and less verbose use. 
 
 
 Props | Type | Description
