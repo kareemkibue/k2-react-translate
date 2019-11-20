@@ -180,6 +180,36 @@ const MyComponent: React.StatelessComponent<{}>=()=>{
 }
 ```
 
+----
+
+### `<LanguageSwitcher />` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LanguageSwitcher.tsx)
+
+A button wrapped React component that provides the ability to set languages.
+
+Props | Type | Description
+---|---|---
+`onClick` | Function | Synthentic event
+
+*Usage*
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LanguageSwitcher } from 'k2-react-translate';
+
+
+const MyComponent: React.FunctionComponent<{}>=()=>{
+
+    const handleClick:(changeLanguage: (language:string)=> void ): void=>{
+        // change language to French
+        changeLanguage('fr');
+    }
+
+    return <div>
+        <LanguageSwitcher onClick={handleClick} />       
+    </div>;
+}
+```
+
 ## Documentation (Localized Routing)
 
 ### `<LocalizedRoutes/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoutes.tsx)
