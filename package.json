@@ -1,53 +1,53 @@
 {
-  "name": "k2-react-translate",
-  "version": "0.2.0",
-  "description": "A translation library with routing",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kareemkibue/k2-react-translate.git"
-  },
-  "author": "Kareem Kibue <mail@kareemkibue.com>",
-  "license": "MIT",
-  "scripts": {
-    "start": "npm run tsc:watch",
-    "tsc:watch": "tsc -w",
-    "clean": "del-cli -f node_modules && del-cli -f yarn.lock && yarn",
-    "build": "del-cli -f .publish && tsc",
-    "test": "node_modules/.bin/jest --coverage --passWithNoTests",
-    "test:watch": "node_modules/.bin/jest --watchAll --passWithNoTests",
-    "npm:copy": "node_modules/.bin/copyfiles package.json yarn.lock readme.md .npmignore .publish",
-    "npm:prepare": "npm run build && npm test && npm run npm:copy",
-    "npm:publish": "npm run npm:prepare && cd .publish && npm publish",
-    "postpublish": "echo 'k2-React published successfully to NPM.' "
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-router-dom": "*"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "4.2.4",
-    "@testing-library/react": "9.3.2",
-    "@types/jest": "24.0.9",
-    "@types/node": "12.12.8",
-    "@types/react": "16.9.11",
-    "@types/react-router-dom": "5.1.2",
-    "@types/react-test-renderer": "16.9.1",
-    "babel-jest": "24.9.0",
-    "copyfiles": "2.1.1",
-    "del-cli": "3.0.0",
-    "jest": "24.9.0",
-    "jest-dom": "4.0.0",
-    "jest-extended": "0.11.2",
-    "npm-run-all": "4.1.5",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-redux": "7.1.3",
-    "react-router-dom": "5.1.2",
-    "react-test-renderer": "16.12.0",
-    "ts-jest": "24.1.0",
-    "typescript": "3.7.2"
-  },
-  "dependencies": {}
+    "name": "k2-react-translate",
+    "version": "0.3.0",
+    "description": "A translation library with routing",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kareemkibue/k2-react-translate.git"
+    },
+    "author": "Kareem Kibue <mail@kareemkibue.com>",
+    "license": "MIT",
+    "scripts": {
+        "start": "npm run tsc:watch",
+        "tsc:watch": "tsc -w",
+        "clean": "del-cli -f node_modules && del-cli -f yarn.lock && yarn",
+        "build": "del-cli -f .publish && tsc",
+        "test": "node_modules/.bin/jest --coverage --passWithNoTests",
+        "test:watch": "node_modules/.bin/jest --watchAll --passWithNoTests",
+        "npm:copy": "node_modules/.bin/copyfiles package.json yarn.lock readme.md .npmignore .publish",
+        "npm:prepare": "npm run build && npm test && npm run npm:copy",
+        "npm:publish": "npm run npm:prepare && cd .publish && npm publish",
+        "postpublish": "echo 'k2-React published successfully to NPM.' "
+    },
+    "peerDependencies": {
+        "react": "*",
+        "react-router-dom": "*"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "4.2.4",
+        "@testing-library/react": "9.3.2",
+        "@types/jest": "24.0.9",
+        "@types/node": "12.12.8",
+        "@types/react": "16.9.11",
+        "@types/react-router-dom": "5.1.2",
+        "@types/react-test-renderer": "16.9.1",
+        "babel-jest": "24.9.0",
+        "copyfiles": "2.1.1",
+        "del-cli": "3.0.0",
+        "jest": "24.9.0",
+        "jest-dom": "4.0.0",
+        "jest-extended": "0.11.2",
+        "npm-run-all": "4.1.5",
+        "react": "16.12.0",
+        "react-dom": "16.12.0",
+        "react-redux": "7.1.3",
+        "react-router-dom": "5.1.2",
+        "react-test-renderer": "16.12.0",
+        "ts-jest": "24.1.0",
+        "typescript": "3.7.2"
+    },
+    "dependencies": {}
 }
