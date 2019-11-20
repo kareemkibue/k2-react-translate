@@ -31,17 +31,127 @@ npm i -S -E k2-react-translate
 
 ### `peerDependencies`
 - [`react@16.2.0+`](https://github.com/facebook/react)
-    - `react@16.8.0+` would have to be installed to use either `useTranslate` or `useTranslateAndParse` hooks.
-- [`react-dom`](https://github.com/facebook/react/tree/master/packages/react-dom)
+    - `react@16.8.0+` would have to be installed to use the `useTranslate` hook.
+- [`react-dom@16.2.0+`](https://github.com/facebook/react/tree/master/packages/react-dom)
 
 ### `optionalDependencies`
 - [`react-router-dom`](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 
 Type definitions come bundled in.
 
+### Project Setup
+If using TypeScript in VS Code, add the following configuration to your `tsconfig.json` to allow for importing json files:
+```jsonc
+// tsconfig.json
+{
+    "compilerOptions": {
+        // other config options ...
+        "resolveJsonModule": true,
+    }
+}
+```
+
+Setup your translations
+```jsonc
+// translations.json
+{
+    "HELLO":{
+        "en":"Hello",
+        "fr":"Bonjour"
+    },    
+    "HELLO_NAME":{
+        "en":"Hello, {firstName}",
+        "fr":"Bonjour, {firstName}"
+    },    
+    "AVAILABLE_IN_COUNTRY":{
+        "en":"Available in {countryName}",
+        "fr":"Disponsible en {countryName}"
+    },
+     "PRIVACY_POLICY": {
+        "en": "<a href='{link}'>Privacy Policy</a>",
+        "fr": "<a href='{link}'>Politique de Confidentialité</a>"
+    },
+}
+```
+
+
+```tsx
+// index.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import * as ReactDOM from 'react-dom'; // standard TypeScript syntax
+import { LocaleProvider } from 'k2-react-translate'
+import { App } from './App';
+import translations from './translations.json';  
+
+
+ReactDOM.render(
+    <LocaleProvider translations={translations} languages={['en','fr']}>
+        <App/>
+    </LocaleProvider>,
+    document.getElementById('app')
+);
+```
+
 ## Documentation 
 
 `k2-react-translate` barrels (re-exports) the following sub-modules as named exports:
+
+### `<LocaleProvider/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocaleProvider.tsx)
+
+A Context API wrapper to `<LocaleContext.Provider/>`.
+
+Props | Type | Description
+---|---|---
+`translations` | Object (required) | See [translations under Project Setup](#Project-Setup)
+`languages` | Array<string> (required) | An array of language codes. Used as [`params`](https://scotch.io/courses/using-react-router-4/route-params) to `react-router` if you choose to incorporate localized routing into your app.
+`defaultLanguage` | string (optional) | Default language, Must be included in the `languages` array above
+
+
+*Usage*
+
+See [Project Setup](Project-Setup) above.
+
+-----
+
+### `useTranslate` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/useTranslate.ts)
+
+A custom hook for use in Function Components.
+
+**Dependencies:** `react@16.8.0+`, `react-dom@16.8.0+`
+
+*Usage*
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { useTranslate } from 'k2-react-translate';
+
+const links = {
+    'en': '/en/privacy-policy',
+    'fr': '/fr/privacy-policy'
+}
+
+const MyComponent: React.FunctionComponent<{}>=()=>{
+    const { translate, translateAndParse, language } = useTranslate();
+
+    return <div>
+        {translate('HELLO')}
+        {translate('HELLO_NAME', {firstName: 'Jaqen'})}        
+        {translateAndParse('PRIVACY_POLICY', {link: links[language] })}
+    </div>;
+}
+```
+
+----
+
+
+
+
+
+
+
+
+
+
 
 ## Development
 - Run `yarn` on the root of the repository.
