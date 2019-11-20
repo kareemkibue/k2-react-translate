@@ -149,8 +149,8 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
         // "Bonjour, Jaqen" (fr) - string
 
         {translateAndParse('PRIVACY_POLICY', {link: links[language] })}
-        // "<a href='/en/privacy-policy'>Privacy Policy</a>" (en) - ReactElement
-        // "<a href='/fr/privacy-policy'>Politique de Confidentialité</a>"  (fr) - ReactElement
+        // <a href='/en/privacy-policy'>Privacy Policy</a> (en) - ReactElement
+        // <a href='/fr/privacy-policy'>Politique de Confidentialité</a> (fr) - ReactElement
 
         <button onClick={handleClick}>
             Change Language
@@ -198,8 +198,8 @@ const MyComponent: React.StatelessComponent<{}>=()=>{
         // "Bonjour, Jaqen" (fr) - string
 
         <Translator id="PRIVACY_POLICY" vars={{link: links[language] }} />
-        // "<a href='/en/privacy-policy'>Privacy Policy</a>" (en) - ReactElement
-        // "<a href='/fr/privacy-policy'>Politique de Confidentialité</a>"  (fr) - ReactElement
+        // <a href='/en/privacy-policy'>Privacy Policy</a> (en) - ReactElement
+        // <a href='/fr/privacy-policy'>Politique de Confidentialité</a> (fr) - ReactElement
     </div>;
 }
 ```
