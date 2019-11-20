@@ -8,8 +8,10 @@ A simple, easy-to-use translation library based on Context API, with optional lo
 ## Table of Contents
 - [Problem Statement](#problem-statement)
 - [Setup](#setup)
-- [Documentation](#documentation)
+- [Documentation (Translation)](#documentation-(translation))
+- [Documentation (Localized Routing)](#documentation-(localized-routing))
 - [Development](#development)
+- [Known Issues](#known-issues)
 - [Changelog](#changelog)
 
 ## Problem Statement
@@ -19,7 +21,7 @@ TBD
 ## Setup
 This ES5 module is distributed via [npm](https://www.npmjs.com/package/k2-react-translate) and should be installed as a production dependency.
 
-Using _yarn_ (recommended)
+Using _yarn_ (preferred)
 ```
 yarn add -E k2-react-translate
 ```
@@ -92,7 +94,7 @@ ReactDOM.render(
 );
 ```
 
-## Documentation 
+## Documentation (Translation)
 
 `k2-react-translate` barrels (re-exports) the following sub-modules as named exports:
 
@@ -148,7 +150,7 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 A React component that wraps `<LocaleContext.Consumer/>` that performs translations, given translation keys as prop arguments.
 
-If using `react v16.8.0+`, I'd strongly recommend using the `useTranslate` hook [above](#useTranslate) works in the same way but provides for cleaner and less verbose use. 
+If using `react v16.8.0+`, I'd strongly recommend using the `useTranslate` hook [above](#useTranslate) instead. `useTranslate` works in the same way but provides for cleaner and less verbose use. 
 
 
 Props | Type | Description
@@ -178,9 +180,19 @@ const MyComponent: React.StatelessComponent<{}>=()=>{
 }
 ```
 
+## Documentation (Localized Routing)
 
----
+### `<LocalizedRoutes/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedRoutes.tsx)
+TBD
 
+### `<LocalizedRoute/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedRoute.tsx)
+TBD
+
+### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedRedirect.tsx)
+TBD
+
+### `<LocalizedLink/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedLink.tsx)
+TBD
 
 
 
@@ -190,10 +202,13 @@ const MyComponent: React.StatelessComponent<{}>=()=>{
 - Run `yarn start` to start the project.
 - Run `yarn test:watch` to ammend tests.
 
+## Known Issues
+- 🐛 Intial configuration using custom languages. Currently hard-coded for use with English and French.
+
 ## Changelog
 
 Version | Log
 ---|---
 0.3.0 | - Update docs
 0.2.0 | - Publish missing sub-modules
-0.1.0 | - Initial publish
+0.1.0 | - Initial publishd
