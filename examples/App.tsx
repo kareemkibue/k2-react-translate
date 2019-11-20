@@ -1,8 +1,8 @@
 import * as React from 'react';
-
+import {RouteConfig} from './RouteConfig'
 
 const App: React.FunctionComponent<{}> = () => {
-	return <div >Test</div>;
+	return <RouteConfig/>;
 };
 
 export { App };

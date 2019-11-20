@@ -1,0 +1,18 @@
+{
+    "HELLO":{
+        "en":"Hello",
+        "fr":"Bonjour"
+    },    
+    "HELLO_NAME":{
+        "en":"Hello, {firstName}",
+        "fr":"Bonjour, {firstName}"
+    },    
+    "AVAILABLE_IN_COUNTRY":{
+        "en":"Available in {countryName}",
+        "fr":"Disponsible en {countryName}"
+    },
+     "PRIVACY_POLICY": {
+        "en": "<a href='{link}'>Privacy Policy</a>",
+        "fr": "<a href='{link}'>Politique de Confidentialité</a>"
+    }
+}

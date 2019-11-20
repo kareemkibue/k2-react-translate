@@ -12,10 +12,11 @@
             "es2018",
             "dom"
         ],
-        "module": "commonjs",
+        "module": "es6",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noUnusedLocals": true,
+        "resolveJsonModule": true,
         "noUnusedParameters": true,
         "noImplicitThis": true,
         "noImplicitReturns": true,
