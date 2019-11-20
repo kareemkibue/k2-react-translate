@@ -115,7 +115,7 @@ See [Project Setup](Project-Setup) above.
 
 ### `useTranslate` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/useTranslate.ts)
 
-A custom hook for use in Function Components.
+A custom hook for use in Function Components. 
 
 **Dependencies:** `react@16.8.0+`, `react-dom@16.8.0+`
 
@@ -141,13 +141,45 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 }
 ```
 
+
 ----
 
+### `<Translator/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/Translator.tsx)
+
+A React component that wraps `<LocaleContext.Consumer/>` that performs translations, given translation keys as prop arguments.
+
+If using `react v16.8.0+`, I'd strongly recommend using the `useTranslate` hook [above](#useTranslate) works in the same way but provides for cleaner and less verbose use. 
 
 
+Props | Type | Description
+---|---|---
+`id` | string (optional) | translation key
+`vars` | object (optional) | dynamic translation variables, set outside the `translations.json`
+`render` | function (optional) | render prop, returning `(language:string)=>ReactNode`
+`parseHtml` | boolean (optional), `default=false` | option to sanitize and parse stringified HTML set in the `translations.json`
+
+*Usage*
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { Translator } from 'k2-react-translate';
+
+const links = {
+    'en': '/en/privacy-policy',
+    'fr': '/fr/privacy-policy'
+}
+
+const MyComponent: React.StatelessComponent<{}>=()=>{
+    return <div>
+        <Translator id="HELLO" />
+        <Translator id="HELLO_NAME" vars={{firstName: 'Jaqen'}} />
+        <Translator id="PRIVACY_POLICY" vars={{link: links[language] }} />
+    </div>;
+}
+```
 
 
-
+---
 
 
 
