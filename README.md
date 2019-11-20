@@ -137,8 +137,16 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
     return <div>
         {translate('HELLO')}
+        // "Hello" (en) - string
+        // "Bonjour" (fr) - string
+
         {translate('HELLO_NAME', {firstName: 'Jaqen'})}        
+        // "Hello, Jaqen" (en) - string
+        // "Bonjour, Jaqen" (fr) - string
+
         {translateAndParse('PRIVACY_POLICY', {link: links[language] })}
+        // "<a href='/en/privacy-policy'>Privacy Policy</a>" (en) - ReactElement
+        // "<a href='/fr/privacy-policy'>Politique de Confidentialité</a>"  (fr) - ReactElement
     </div>;
 }
 ```
@@ -173,9 +181,17 @@ const links = {
 
 const MyComponent: React.StatelessComponent<{}>=()=>{
     return <div>
-        <Translator id="HELLO" />
-        <Translator id="HELLO_NAME" vars={{firstName: 'Jaqen'}} />
+        <Translator id="HELLO" /> 
+        // "Hello" (en) - string
+        // "Bonjour" (fr) - string
+
+        <Translator id="HELLO_NAME" vars={{firstName: 'Jaqen'}} /> 
+        // "Hello, Jaqen" (en) - string
+        // "Bonjour, Jaqen" (fr) - string
+
         <Translator id="PRIVACY_POLICY" vars={{link: links[language] }} />
+        // "<a href='/en/privacy-policy'>Privacy Policy</a>" (en) - ReactElement
+        // "<a href='/fr/privacy-policy'>Politique de Confidentialité</a>"  (fr) - ReactElement
     </div>;
 }
 ```
@@ -186,16 +202,17 @@ const MyComponent: React.StatelessComponent<{}>=()=>{
 
 A button wrapped React component that provides the ability to set languages.
 
+Switching languages can alternatively be performed under an exposed function in the `useTranslate` hook documented [here](#usetranslate---source). 
+
 Props | Type | Description
 ---|---|---
 `onClick` | Function | Synthentic event
 
-*Usage*
+#### Usage
 ```tsx
 // MyComponent.tsx
 import * as React from 'react'; // standard TypeScript syntax
 import { LanguageSwitcher } from 'k2-react-translate';
-
 
 const MyComponent: React.FunctionComponent<{}>=()=>{
 
