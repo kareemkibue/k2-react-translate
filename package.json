@@ -4,6 +4,14 @@
     "description": "A translation library with routing",
     "main": "index.js",
     "types": "index.d.ts",
+    "keywords": [
+        "utils",
+        "react",
+        "hooks",
+        "translate",
+        "localization",
+        "localized routing"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/kareemkibue/k2-react-translate.git"
