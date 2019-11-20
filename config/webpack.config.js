@@ -81,10 +81,8 @@ module.exports = {
 			template: paths.indexHtml,
 		}),
 		new FriendlyErrorsWebpackPlugin({
-            clearConsole: true,
-             messages: [
-                `Local: http://localhost:${PORT}`          
-            ],
+			clearConsole: true,
+			messages: [`Local: http://localhost:${PORT}`],
 		}),
 		new CircularDependencyPlugin({
 			exclude: /a\.js|node_modules/,
@@ -105,8 +103,8 @@ module.exports = {
 			configHash: (webpackConfig) => {
 				return require('node-object-hash')().hash(webpackConfig);
 			},
-			cacheDirectory: `${paths.cacheDir}/.cache/hard-source/[confighash]`,
-			recordsPath: `${paths.cacheDir}/.cache/hard-source/[confighash]/records.json`,
+			cacheDirectory: `${paths.cacheDir}/hard-source/[confighash]`,
+			recordsPath: `${paths.cacheDir}/hard-source/[confighash]/records.json`,
 			cachePrune: {
 				maxAge: 24 * 60 * 60 * 1000,
 				sizeThreshold: 50 * 1024 * 1024,
