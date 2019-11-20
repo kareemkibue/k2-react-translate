@@ -19,7 +19,8 @@
     "author": "Kareem Kibue <mail@kareemkibue.com>",
     "license": "MIT",
     "scripts": {
-        "start": "npm run tsc:watch",
+        "start": "npm-run-all tsc:watch examples:run",
+        "examples:run": "node_modules/.bin/webpack-dev-server --config ./config/webpack.config.js",
         "tsc:watch": "tsc -w",
         "clean": "del-cli -f node_modules && del-cli -f yarn.lock && yarn",
         "build": "del-cli -f .publish && tsc",
@@ -28,7 +29,9 @@
         "npm:copy": "node_modules/.bin/copyfiles package.json yarn.lock readme.md .npmignore .publish",
         "npm:prepare": "npm run build && npm test && npm run npm:copy",
         "npm:publish": "npm run npm:prepare && cd .publish && npm publish",
-        "postpublish": "echo 'k2-React published successfully to NPM.' "
+        "postpublish": "echo 'k2-React published successfully to NPM.' ",
+        "postinstall": "npm run del:cache",
+        "del:cache": "del-cli -f ./.cache && del-cli -f ./node_modules/@types/react-native"
     },
     "peerDependencies": {
         "react": "*",
@@ -42,9 +45,17 @@
         "@types/react": "16.9.11",
         "@types/react-router-dom": "5.1.2",
         "@types/react-test-renderer": "16.9.1",
+        "@types/styled-components": "4.4.0",
+        "awesome-typescript-loader": "5.2.1",
         "babel-jest": "24.9.0",
+        "circular-dependency-plugin": "5.2.0",
         "copyfiles": "2.1.1",
+        "css-loader": "3.2.0",
         "del-cli": "3.0.0",
+        "eslint-loader": "3.0.2",
+        "friendly-errors-webpack-plugin": "1.7.0",
+        "hard-source-webpack-plugin": "0.13.1",
+        "html-webpack-plugin": "3.2.0",
         "jest": "24.9.0",
         "jest-dom": "4.0.0",
         "jest-extended": "0.11.2",
@@ -54,8 +65,15 @@
         "react-redux": "7.1.3",
         "react-router-dom": "5.1.2",
         "react-test-renderer": "16.12.0",
+        "style-loader": "1.0.0",
+        "styled-components": "4.4.1",
         "ts-jest": "24.1.0",
-        "typescript": "3.7.2"
+        "typescript": "3.7.2",
+        "typescript-plugin-styled-components": "1.4.3",
+        "typescript-styled-plugin": "0.15.0",
+        "webpack": "4.41.2",
+        "webpack-cli": "3.3.10",
+        "webpack-dev-server": "3.9.0"
     },
     "dependencies": {}
 }
