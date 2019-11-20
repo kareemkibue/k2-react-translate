@@ -1,7 +1,7 @@
 # k2-react-translate
 
-[![Build Status](https://travis-ci.org/kareemkibue/k2-react-utils.svg?branch=master)](https://travis-ci.org/kareemkibue/k2-react-utils)
-[![Coverage Status](https://coveralls.io/repos/github/kareemkibue/k2-react-utils/badge.svg?branch=master)](https://coveralls.io/github/kareemkibue/k2-react-utils?branch=master)
+<!-- [![Build Status](https://travis-ci.org/kareemkibue/k2-react-translate.svg?branch=master)](https://travis-ci.org/kareemkibue/k2-react-translate)
+[![Coverage Status](https://coveralls.io/repos/github/kareemkibue/k2-react-translate/badge.svg?branch=master)](https://coveralls.io/github/kareemkibue/k2-react-translate?branch=master) -->
 
 A simple, easy-to-use translation library based on Context API, with optional localized routing.
 
@@ -98,7 +98,7 @@ ReactDOM.render(
 
 `k2-react-translate` barrels (re-exports) the following sub-modules as named exports:
 
-### `<LocaleProvider/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocaleProvider.tsx)
+### `<LocaleProvider/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocaleProvider.tsx)
 
 A Context API wrapper to `<LocaleContext.Provider/>`.
 
@@ -115,7 +115,7 @@ See [Project Setup](Project-Setup) above.
 
 -----
 
-### `useTranslate` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/useTranslate.ts)
+### `useTranslate` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/useTranslate.ts)
 
 A custom hook for use in Function Components. 
 
@@ -146,7 +146,7 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 ----
 
-### `<Translator/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/Translator.tsx)
+### `<Translator/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/Translator.tsx)
 
 A React component that wraps `<LocaleContext.Consumer/>` that performs translations, given translation keys as prop arguments.
 
@@ -182,16 +182,16 @@ const MyComponent: React.StatelessComponent<{}>=()=>{
 
 ## Documentation (Localized Routing)
 
-### `<LocalizedRoutes/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedRoutes.tsx)
+### `<LocalizedRoutes/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoutes.tsx)
 TBD
 
-### `<LocalizedRoute/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedRoute.tsx)
+### `<LocalizedRoute/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoute.tsx)
 TBD
 
-### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedRedirect.tsx)
+### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRedirect.tsx)
 TBD
 
-### `<LocalizedLink/>` - [source](https://github.com/kareemkibue/k2-react-utils/blob/master/src/LocalizedLink.tsx)
+### `<LocalizedLink/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedLink.tsx)
 TBD
 
 
