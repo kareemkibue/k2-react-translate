@@ -370,7 +370,7 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
         </LocalizedRedirect>;
     }
 
-    // alternatively, the `props.history.push`  would resolve URLs from current langauge
+    // alternatively, `props.history.push` would also resolve URLs by current langauge
 
     return <div/>;
 }
