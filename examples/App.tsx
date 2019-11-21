@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { LocalizedLink, LocalizedRoutes, Route, useTranslate } from '../src';
 import { AppStyles } from './appStyles';
@@ -33,14 +32,12 @@ const App: React.FunctionComponent<{}> = () => {
 	];
 
 	return (
-		<BrowserRouter>
-			<Grid>
-				<AppStyles />
-				<Header />
-				<LocalizedRoutes applySwitch={true} routes={routes} />
-				<Footer />
-			</Grid>
-		</BrowserRouter>
+		<Grid>
+			<AppStyles />
+			<Header />
+			<LocalizedRoutes applySwitch={true} routes={routes} />
+			<Footer />
+		</Grid>
 	);
 };
 
@@ -52,7 +49,7 @@ const Grid = styled.div`
 
 const Header: React.FunctionComponent<{}> = () => {
 	const { language: currentLanguage, changeLanguage, translate } = useTranslate<string>();
-	const languages: string[] = ['en', 'fr', 'it'];
+	const languages: string[] = ['en', 'fr', 'sw'];
 
 	const handleLanguageChange = (e: any): void => {
 		const selectedLanguage: string = e.target.value;

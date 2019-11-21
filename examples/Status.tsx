@@ -11,16 +11,22 @@ const Status: React.FunctionComponent<IProps> = (props) => {
 	const { match } = props;
 	const { language } = useTranslate<string>();
 
-	console.log({ match });
-
 	return (
 		<StatusWrapper>
 			<strong>Status</strong>
 			<table cellPadding="10">
 				<tbody>
 					<tr>
-						<td>CURRENT LANGUAGE:</td>
+						<td>CURRENT LANGUAGE</td>
 						<td>{language}</td>
+					</tr>
+					<tr>
+						<td>DEFAULT SET LANGUAGE</td>
+						<td>{'en'}</td>
+					</tr>
+					<tr>
+						<td>CONFIGURED LANGUAGES</td>
+						<td>{JSON.stringify(['en', 'fr', 'sw'])}</td>
 					</tr>
 					<tr>
 						<td>match.isExact</td>

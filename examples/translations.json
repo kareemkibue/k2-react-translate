@@ -1,7 +1,8 @@
 {
     "ABOUT_US": {
         "en": "About us",
-        "fr": "À propos de nous"
+        "fr": "À propos de nous",
+        "sw": "Kutuhusu sisi"
     },
     "AVAILABLE_IN_COUNTRY": {
         "en": "Available in {countryName}",
@@ -9,7 +10,8 @@
     },
     "CONTACT_US": {
         "en": "Contact Us",
-        "fr": "Pour nous joindre"
+        "fr": "Pour nous joindre",
+        "sw": "Zungumza nasi"
     },
     "COPYRIGHT": {
         "en": "Copyright &copy; {year}. All rights reserved.",
@@ -21,14 +23,16 @@
     },
     "HOME": {
         "en": "Home",
-        "fr": "Maison"
+        "fr": "Maison",
+        "sw": "Nyumbani"
     },
     "LOGO": {
         "en": "Logo"
     },
     "PAGE_NOT_FOUND": {
         "en": "Page Not Found",
-        "fr": "Page introuvable"
+        "fr": "Page introuvable",
+        "sw": "Kurasa haipatikani"
     },
     "PRIVACY_POLICY": {
         "en": "<a href='{link}'>Privacy Policy</a>",
@@ -36,6 +40,12 @@
     },
     "WELCOME": {
         "en": "Welcome",
-        "fr": "Bienvenue"
+        "fr": "Bienvenue",
+        "sw": "Mambo Vipi"
+    },
+    "FLAG_IMAGES": {
+        "en": "<img src=\"https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/233/flag-for-united-kingdom_1f1ec-1f1e7.png\"/>",
+        "fr": "<img src=\"https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/233/flag-for-france_1f1eb-1f1f7.png\"/>",
+        "sw": "<img src=\"https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/233/flag-for-kenya_1f1f0-1f1ea.png\"/>"
     }
 }

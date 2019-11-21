@@ -255,9 +255,10 @@ TBD
 - Run `yarn start` to start the project.
 - Run `yarn test:watch` to ammend tests.
 
-## Known Issues
+## Known Issues 
 - 🐛 Intial configuration using custom languages. Currently hard-coded for use with English and French.
 - Routing works with `<BrowserRouter/>` for now
+- `<LocalizedNavLink/>` is yet to be adapted. `<LocalizedLink>` can be a short-term
 
 ## Changelog
 
