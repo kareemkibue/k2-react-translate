@@ -5,6 +5,11 @@
 
 A simple, easy-to-use translation library based on Context API, with optional localized routing.
 
+See a demo on [CodeSandbox](https://codesandbox.io/s/amazing-dawn-l0een).
+
+[![image](https://user-images.githubusercontent.com/6430272/69345005-61690680-0c3e-11ea-9d1b-d82a16567e8e.png)](https://codesandbox.io/s/amazing-dawn-l0een)
+
+
 ## Table of Contents
 - [Problem Statement](#problem-statement)
 - [Setup](#setup)
@@ -35,9 +40,10 @@ npm i -S -E k2-react-translate
 - [`react@16.2.0+`](https://github.com/facebook/react)
     - `react@16.8.0+` would have to be installed to use the `useTranslate` hook.
 - [`react-dom@16.2.0+`](https://github.com/facebook/react/tree/master/packages/react-dom)
-
-### `optionalDependencies`
 - [`react-router-dom`](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+- [`history`](https://github.com/ReactTraining/history)
+
+<!-- ### `optionalDependencies` -->
 
 Type definitions come bundled in.
 
