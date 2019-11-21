@@ -237,17 +237,178 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 ## Documentation (Localized Routing)
 
+Localized routing is optional. If used, `react-router-dom` would need to be installed as a production dependency. 
+
 ### `<LocalizedRoutes/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoutes.tsx)
-TBD
+
+Provides a simple, non-intrusive way of setting up localized routes. Returns localized `<Route/>`s or `<Redirect/>`s components given the `routes` prop config.
+
+If `<LocalizedRoutes/>` is used, you need not wrap your RouterConfig with `<Router/>` or `<BrowserRouter/>` as this is done within `<LocaleProvider/>`.
+
+`<LocalizedRoutes/>` is not recursive. 
+
+Props | Type | Description
+---|---|---
+`routes` | Array (required) | Based on `react-router-dom`'s props
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+`applySwitch` | Boolean (optional), default=`false` | Wrap the Route config with `<Switch/>` components. Required in most cases.
+
+#### Usage
+```tsx
+// RouteConfig.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRoutes, Route } from 'k2-react-translate';
+
+const RouteConfig: React.FunctionComponent<{}>=()=>{
+    const routes: Route[] = [
+		{
+			path: '/',  // resolves to /:language/, unless localize={false}
+			exact: true,
+			component: Home,
+		},
+		{
+			path: '/about', // resolves to /:language/about, unless localize={false}
+            component: About,
+            localize: true // should override <LocalizedRoutes localize={[true|false]} />
+		},		
+		{
+            // Redirect props
+            to: '/page-not-found',  // resolves to /:language/page-not-found, unless localize={false}
+		},
+	];
+
+    return (<div>
+       <LocalizedRoutes applySwitch={true} routes={routes} />    
+    </div>);
+}
+```
+
+-----
 
 ### `<LocalizedRoute/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoute.tsx)
-TBD
 
-### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRedirect.tsx)
-TBD
+A localized wrapper to `react-router-dom`'s `Route`.
+
+You wouldn't need to use `<LocalizedRoute/>` if [`<LocalizedRoutes/>`](#localizedroutes---source) is configured.
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Route)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRoute } from 'k2-react-translate';
+import { Home } from './Home';
+import { About } from './About';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+    return <div>
+        // automatically resolves to the "/:language/about-us"
+        // if "en" is active, then "/en/about-us"
+        <LocalizedRoute path="/" exact component={Home} />
+        <LocalizedRoute path="/about" component={About} />
+    </div>;
+}
+```
+
+
+-----
 
 ### `<LocalizedLink/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedLink.tsx)
-TBD
+
+A localized wrapper to `react-router-dom`'s `<Link/>`.
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Route)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedLink } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+    return <div>
+        // automatically resolves to the "/:language/about-us"
+        // if "en" is active, then "/en/about-us"
+        <LocalizedLink to="/about-us">
+            About Us
+        </LocalizedLink>
+    </div>;
+}
+```
+
+-----
+
+### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRedirect.tsx)
+
+A localized wrapper to `react-router-dom`'s `<Redirect/>`.
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Redirect)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRedirect } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+
+    // automatically resolves to the "/:language/page-not-found"
+    // if "en" is active, then "/en/page-not-found"
+    if (someCondition){
+        return <LocalizedRedirect to="/page-not-found">
+            About Us
+        </LocalizedRedirect>;
+    }
+
+    // alternatively, the `props.history.push`  would resolve URLs from current langauge
+
+    return <div/>;
+}
+```
+
+<!--
+### `localizedHistory` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/localizedHistory.ts)
+
+A localized instance of 
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Redirect)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRedirect } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+
+    // automatically resolves to the "/:language/page-not-found"
+    // if "en" is active, then "/en/page-not-found"
+    if (someCondition){
+        return <LocalizedRedirect to="/page-not-found">
+            About Us
+        </LocalizedRedirect>;
+    }
+
+    // alternatively, the `props.history` function would resolve URLs from current langauge    
+
+    return <div/>;
+}
+```
+
+-->
 
 
 ## Development
@@ -256,9 +417,8 @@ TBD
 - Run `yarn test:watch` to ammend tests.
 
 ## Known Issues 
-- 🐛 Intial configuration using custom languages. Currently hard-coded for use with English and French.
 - Routing works with `<BrowserRouter/>` for now
-- `<LocalizedNavLink/>` is yet to be adapted. `<LocalizedLink>` can be a short-term
+- `<LocalizedNavLink/>` is yet to be adapted from `<NavLink/>`. `<LocalizedLink>` can be a short-term
 
 ## Changelog
 
