@@ -29,11 +29,11 @@ class LocaleProvider extends React.Component<IProps, IState> {
 	 * * Resolve the initiale language setting from hard setting or from the browser setting
 	 */
 	private resolveIntialialLanguage(): void {
-		const { defaultLanguage } = this.props;
+		const { defaultLanguage, languages } = this.props;
 		const urlLanguageSetting: string | null = this.getLanguageFromUrl();
 		const browserLanguageSetting: string = navigator.language.split(/[-_]/)[0]; // * language without region code
 		const resolvedLanguage: string =
-			urlLanguageSetting || defaultLanguage || browserLanguageSetting || 'en';
+			urlLanguageSetting || defaultLanguage || browserLanguageSetting || languages[0];
 
 		if (urlLanguageSetting === null) {
 			this.insertLanguageToUrl(resolvedLanguage);
@@ -43,18 +43,35 @@ class LocaleProvider extends React.Component<IProps, IState> {
 	}
 
 	private setLanguage = (language: string): void => {
-		this.setState({ language }, () => {
-			this.updateUrl();
-		});
+		const { languages } = this.props;
+		const doesLanguageExist = languages.indexOf(language.toLowerCase()) > -1;
+
+		if (doesLanguageExist) {
+			this.setState(
+				{
+					language: language.toLowerCase(),
+				},
+				() => {
+					this.updateUrl();
+				}
+			);
+		} else {
+			console.error(
+				'⛔ Selected language does not exist in the initial <LocaleProvider/> configuration!'
+			);
+		}
 	};
 
 	private getLanguageFromUrl = (): string | null => {
+		const { languages } = this.props;
 		const url: string = location.pathname;
 
-		if (url.match(/\/en\//g)) {
-			return 'en';
-		} else if (url.match(/\/fr\//g)) {
-			return 'fr';
+		const matchedLanguage = languages.find((language: string) => {
+			return url.toLowerCase().includes(language.toLowerCase());
+		});
+
+		if (matchedLanguage) {
+			return matchedLanguage;
 		}
 
 		return null;
@@ -67,14 +84,20 @@ class LocaleProvider extends React.Component<IProps, IState> {
 	}
 
 	private updateUrl = (): void => {
-		const { language } = this.state;
+		const { languages, defaultLanguage } = this.props;
+		const { language: currentLanguage } = this.state;
 		const currentUrl: string = location.pathname + location.search;
-		// TODO Adapt to languages set via Provider props
-		const searchString: string = language !== 'fr' ? '/fr/' : '/en/';
-		const replaceString: string = `/${language}/`;
-		const updatedUrl: string = currentUrl.replace(searchString, replaceString);
+		let searchString: string = defaultLanguage || languages[0];
 
-		// TODO Sync with <LocalizedRoute/>
+		// TODO Adapt to languages set via Provider props
+		for (const language of languages) {
+			if (currentUrl.includes(language)) {
+				searchString = language;
+				break;
+			}
+		}
+
+		const updatedUrl: string = currentUrl.replace(`/${searchString}/`, `/${currentLanguage}/`);
 		localizedHistory.push(updatedUrl);
 	};
 

@@ -1,17 +1,23 @@
 {
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
         "declaration": true,
+        "forceConsistentCasingInFileNames": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "jsx": "react",
         "lib": [
             "es2015",
+            "es2017",
+            "es2018",
             "dom"
         ],
-        "module": "commonjs",
+        "module": "es6",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noUnusedLocals": true,
+        "resolveJsonModule": true,
         "noUnusedParameters": true,
         "noImplicitThis": true,
         "noImplicitReturns": true,

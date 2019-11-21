@@ -85,7 +85,6 @@ import { LocaleProvider } from 'k2-react-translate'
 import { App } from './App';
 import translations from './translations.json';  
 
-
 ReactDOM.render(
     <LocaleProvider translations={translations} languages={['en','fr']}>
         <App/>
@@ -109,7 +108,7 @@ Props | Type | Description
 `defaultLanguage` | string (optional) | Default language, Must be included in the `languages` array above
 
 
-*Usage*
+#### Usage
 
 See [Project Setup](Project-Setup) above.
 
@@ -121,7 +120,7 @@ A custom hook for use in Function Components.
 
 **Dependencies:** `react@16.8.0+`, `react-dom@16.8.0+`
 
-*Usage*
+#### Usage
 ```tsx
 // MyComponent.tsx
 import * as React from 'react'; // standard TypeScript syntax
@@ -133,12 +132,29 @@ const links = {
 }
 
 const MyComponent: React.FunctionComponent<{}>=()=>{
-    const { translate, translateAndParse, language } = useTranslate();
+    const { translate, translateAndParse, language, changeLanguage } = useTranslate<string>();
+
+    const handleClick = ():void => {
+         // change language to French
+        changeLanguage('fr');
+    }
 
     return <div>
         {translate('HELLO')}
+        // "Hello" (en) - string
+        // "Bonjour" (fr) - string
+
         {translate('HELLO_NAME', {firstName: 'Jaqen'})}        
+        // "Hello, Jaqen" (en) - string
+        // "Bonjour, Jaqen" (fr) - string
+
         {translateAndParse('PRIVACY_POLICY', {link: links[language] })}
+        // <a href="/en/privacy-policy">Privacy Policy</a> (en) - ReactElement
+        // <a href="/fr/privacy-policy">Politique de Confidentialité</a> (fr) - ReactElement
+
+        <button onClick={handleClick}>
+            Change Language
+        </button>
     </div>;
 }
 ```
@@ -160,7 +176,7 @@ Props | Type | Description
 `render` | function (optional) | render prop, returning `(language:string)=>ReactNode`
 `parseHtml` | boolean (optional), `default=false` | option to sanitize and parse stringified HTML set in the `translations.json`
 
-*Usage*
+#### Usage
 ```tsx
 // MyComponent.tsx
 import * as React from 'react'; // standard TypeScript syntax
@@ -173,28 +189,226 @@ const links = {
 
 const MyComponent: React.StatelessComponent<{}>=()=>{
     return <div>
-        <Translator id="HELLO" />
-        <Translator id="HELLO_NAME" vars={{firstName: 'Jaqen'}} />
+        <Translator id="HELLO" /> 
+        // "Hello" (en) - string
+        // "Bonjour" (fr) - string
+
+        <Translator id="HELLO_NAME" vars={{firstName: 'Jaqen'}} /> 
+        // "Hello, Jaqen" (en) - string
+        // "Bonjour, Jaqen" (fr) - string
+
         <Translator id="PRIVACY_POLICY" vars={{link: links[language] }} />
+        // <a href="/en/privacy-policy">Privacy Policy</a> (en) - ReactElement
+        // <a href="/fr/privacy-policy">Politique de Confidentialité</a> (fr) - ReactElement
+    </div>;
+}
+```
+
+----
+
+### `<LanguageSwitcher />` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LanguageSwitcher.tsx)
+
+A button wrapped React component that provides the ability to set languages.
+
+Switching languages can alternatively be performed under an exposed function in the `useTranslate` hook documented [here](#usetranslate---source). 
+
+Props | Type | Description
+---|---|---
+`onClick` | Function | Synthentic event
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LanguageSwitcher } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{
+
+    const handleClick:(changeLanguage: (language:string)=> void ): void=>{
+        // change language to French
+        changeLanguage('fr');
+    }
+
+    return <div>
+        <LanguageSwitcher onClick={handleClick} />       
     </div>;
 }
 ```
 
 ## Documentation (Localized Routing)
 
+Localized routing is optional. If used, `react-router-dom` would need to be installed as a production dependency. 
+
 ### `<LocalizedRoutes/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoutes.tsx)
-TBD
+
+Provides a simple, non-intrusive way of setting up localized routes. Returns localized `<Route/>`s or `<Redirect/>`s components given the `routes` prop config.
+
+If `<LocalizedRoutes/>` is used, you need not wrap your RouterConfig with `<Router/>` or `<BrowserRouter/>` as this is done within `<LocaleProvider/>`.
+
+`<LocalizedRoutes/>` is not recursive. 
+
+Props | Type | Description
+---|---|---
+`routes` | Array (required) | Based on `react-router-dom`'s props
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+`applySwitch` | Boolean (optional), default=`false` | Wrap the Route config with `<Switch/>` components. Required in most cases.
+
+#### Usage
+```tsx
+// RouteConfig.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRoutes, Route } from 'k2-react-translate';
+
+const RouteConfig: React.FunctionComponent<{}>=()=>{
+    const routes: Route[] = [
+		{
+			path: '/',  // resolves to /:language/, unless localize={false}
+			exact: true,
+			component: Home,
+		},
+		{
+			path: '/about', // resolves to /:language/about, unless localize={false}
+            component: About,
+            localize: true // should override <LocalizedRoutes localize={[true|false]} />
+		},		
+		{
+            // Redirect props
+            to: '/page-not-found',  // resolves to /:language/page-not-found, unless localize={false}
+		},
+	];
+
+    return (<div>
+       <LocalizedRoutes applySwitch={true} routes={routes} />    
+    </div>);
+}
+```
+
+-----
 
 ### `<LocalizedRoute/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRoute.tsx)
-TBD
 
-### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRedirect.tsx)
-TBD
+A localized wrapper to `react-router-dom`'s `Route`.
+
+You wouldn't need to use `<LocalizedRoute/>` if [`<LocalizedRoutes/>`](#localizedroutes---source) is configured.
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Route)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRoute } from 'k2-react-translate';
+import { Home } from './Home';
+import { About } from './About';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+    return <div>
+        // automatically resolves to the "/:language/about-us"
+        // if "en" is active, then "/en/about-us"
+        <LocalizedRoute path="/" exact component={Home} />
+        <LocalizedRoute path="/about" component={About} />
+    </div>;
+}
+```
+
+
+-----
 
 ### `<LocalizedLink/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedLink.tsx)
-TBD
 
+A localized wrapper to `react-router-dom`'s `<Link/>`.
 
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Link)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedLink } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+    return <div>
+        // automatically resolves to the "/:language/about-us"
+        // if "en" is active, then "/en/about-us"
+        <LocalizedLink to="/about-us">
+            About Us
+        </LocalizedLink>
+    </div>;
+}
+```
+
+-----
+
+### `<LocalizedRedirect/>` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/LocalizedRedirect.tsx)
+
+A localized wrapper to `react-router-dom`'s `<Redirect/>`.
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Redirect)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRedirect } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+
+    // automatically resolves to the "/:language/page-not-found"
+    // if "en" is active, then "/en/page-not-found"
+    if (someCondition){
+        return <LocalizedRedirect to="/page-not-found">
+            About Us
+        </LocalizedRedirect>;
+    }
+
+    // alternatively, `props.history.push` would also resolve URLs by current langauge
+
+    return <div/>;
+}
+```
+
+<!--
+### `localizedHistory` - [source](https://github.com/kareemkibue/k2-react-translate/blob/master/src/localizedHistory.ts)
+
+A localized instance of 
+
+Props | Type | Description
+---|---|---
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Redirect)
+`localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
+
+#### Usage
+```tsx
+// MyComponent.tsx
+import * as React from 'react'; // standard TypeScript syntax
+import { LocalizedRedirect } from 'k2-react-translate';
+
+const MyComponent: React.FunctionComponent<{}>=()=>{    
+
+    // automatically resolves to the "/:language/page-not-found"
+    // if "en" is active, then "/en/page-not-found"
+    if (someCondition){
+        return <LocalizedRedirect to="/page-not-found">
+            About Us
+        </LocalizedRedirect>;
+    }
+
+    // alternatively, the `props.history` function would resolve URLs from current langauge    
+
+    return <div/>;
+}
+```
+
+-->
 
 
 ## Development
@@ -202,13 +416,16 @@ TBD
 - Run `yarn start` to start the project.
 - Run `yarn test:watch` to ammend tests.
 
-## Known Issues
-- 🐛 Intial configuration using custom languages. Currently hard-coded for use with English and French.
+## Known Issues 
+- Routing works with `<BrowserRouter/>` for now
+- `<LocalizedNavLink/>` is yet to be adapted from `<NavLink/>`. `<LocalizedLink>` works equally as well, with the exception of the `activeClassName` prop.
 
 ## Changelog
 
 Version | Log
 ---|---
+0.4.1 | - Add missing TypeScript declarations
+0.4.0 | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs
 0.3.0 | - Update docs
 0.2.0 | - Publish missing sub-modules
 0.1.0 | - Initial publishd
