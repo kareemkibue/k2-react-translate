@@ -22,7 +22,6 @@
         "noImplicitThis": true,
         "noImplicitReturns": true,
         "outDir": "./.publish",
-        // "outFile": "./.publish/index.js",
         "pretty": true,
         "sourceMap": false,
         "inlineSourceMap": false,
