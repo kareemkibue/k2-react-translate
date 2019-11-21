@@ -26,6 +26,8 @@ TBD
 ## Setup
 This ES5 module is distributed via [npm](https://www.npmjs.com/package/k2-react-translate) and should be installed as a production dependency.
 
+Note: TypeScript syntax is used throughout the docs, but the library should run without issue on a `babel/react` setup.
+
 Using _yarn_ (preferred)
 ```
 yarn add -E k2-react-translate
@@ -45,7 +47,7 @@ npm i -S -E k2-react-translate
 
 <!-- ### `optionalDependencies` -->
 
-Type definitions come bundled in.
+Typescirpt type definitions come bundled in.
 
 ### Project Setup
 If using TypeScript in VS Code, add the following configuration to your `tsconfig.json` to allow for importing json files:
@@ -59,7 +61,7 @@ If using TypeScript in VS Code, add the following configuration to your `tsconfi
 }
 ```
 
-Setup your translations
+Setup your translations:
 ```jsonc
 // translations.json
 {
@@ -82,7 +84,7 @@ Setup your translations
 }
 ```
 
-
+Entry point:
 ```tsx
 // index.tsx
 import * as React from 'react'; // standard TypeScript syntax
