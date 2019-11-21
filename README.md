@@ -132,7 +132,7 @@ const links = {
 }
 
 const MyComponent: React.FunctionComponent<{}>=()=>{
-    const { translate, translateAndParse, language, changeLanguage } = useTranslate();
+    const { translate, translateAndParse, language, changeLanguage } = useTranslate<string>();
 
     const handleClick = ():void => {
          // change language to French
@@ -250,8 +250,6 @@ TBD
 TBD
 
 
-
-
 ## Development
 - Run `yarn` on the root of the repository.
 - Run `yarn start` to start the project.
@@ -259,6 +257,7 @@ TBD
 
 ## Known Issues
 - 🐛 Intial configuration using custom languages. Currently hard-coded for use with English and French.
+- Routing works with `<BrowserRouter/>` for now
 
 ## Changelog
 

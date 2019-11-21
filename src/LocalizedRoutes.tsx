@@ -8,7 +8,7 @@ import { Translator } from './Translator';
 type Route = ILocalizedRouteProps | IRedirectProps | { routes: Route[] };
 
 interface IProps {
-	applySwitch?: boolean; // * default = false
+	applySwitch?: boolean; // * Wrap config with switch. default = false
 	localize?: boolean; // * default true
 	// routes: Array<ILocalizedRouteProps | IRedirectProps>; // TODO Add nested routes support
 	routes: Route[];
@@ -103,4 +103,4 @@ const LocalizedRoutes: React.FunctionComponent<IProps> = (props) => {
 	return <>{routeConfig}</>;
 };
 
-export { LocalizedRoutes };
+export { LocalizedRoutes, Route };

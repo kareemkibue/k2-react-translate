@@ -1,18 +1,41 @@
 {
-    "HELLO":{
-        "en":"Hello",
-        "fr":"Bonjour"
-    },    
-    "HELLO_NAME":{
-        "en":"Hello, {firstName}",
-        "fr":"Bonjour, {firstName}"
-    },    
-    "AVAILABLE_IN_COUNTRY":{
-        "en":"Available in {countryName}",
-        "fr":"Disponsible en {countryName}"
+    "ABOUT_US": {
+        "en": "About us",
+        "fr": "À propos de nous"
     },
-     "PRIVACY_POLICY": {
+    "AVAILABLE_IN_COUNTRY": {
+        "en": "Available in {countryName}",
+        "fr": "Disponsible en {countryName}"
+    },
+    "CONTACT_US": {
+        "en": "Contact Us",
+        "fr": "Pour nous joindre"
+    },
+    "COPYRIGHT": {
+        "en": "Copyright &copy; {year}. All rights reserved.",
+        "fr": "&reg; {year}. Tous droits réservés."
+    },
+    "HELLO_NAME": {
+        "en": "Hello, {firstName}",
+        "fr": "Bonjour, {firstName}"
+    },
+    "HOME": {
+        "en": "Home",
+        "fr": "Maison"
+    },
+    "LOGO": {
+        "en": "Logo"
+    },
+    "PAGE_NOT_FOUND": {
+        "en": "Page Not Found",
+        "fr": "Page introuvable"
+    },
+    "PRIVACY_POLICY": {
         "en": "<a href='{link}'>Privacy Policy</a>",
         "fr": "<a href='{link}'>Politique de Confidentialité</a>"
+    },
+    "WELCOME": {
+        "en": "Welcome",
+        "fr": "Bienvenue"
     }
 }
