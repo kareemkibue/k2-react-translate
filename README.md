@@ -323,7 +323,7 @@ A localized wrapper to `react-router-dom`'s `<Link/>`.
 
 Props | Type | Description
 ---|---|---
-...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Route)
+...props | Object | Standard `<Route/>` component [props](https://reacttraining.com/react-router/web/api/Link)
 `localize` | Boolean (optional), default=`true`  | Option to localize URLs (prepend the language code in the URL)
 
 #### Usage
