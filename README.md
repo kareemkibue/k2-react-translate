@@ -314,9 +314,11 @@ import { About } from './About';
 
 const MyComponent: React.FunctionComponent<{}>=()=>{    
     return <div>
+        // automatically resolves to the "/:language"
+        // if "en" is active, then "/en"
+        <LocalizedRoute path="/" exact component={Home} />
         // automatically resolves to the "/:language/about-us"
         // if "en" is active, then "/en/about-us"
-        <LocalizedRoute path="/" exact component={Home} />
         <LocalizedRoute path="/about" component={About} />
     </div>;
 }
