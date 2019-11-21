@@ -424,6 +424,7 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 Version | Log
 ---|---
+0.4.0 | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs
 0.3.0 | - Update docs
 0.2.0 | - Publish missing sub-modules
 0.1.0 | - Initial publishd
