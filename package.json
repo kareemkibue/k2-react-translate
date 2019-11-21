@@ -21,6 +21,7 @@
     "scripts": {
         "start": "npm-run-all --parallel tsc:watch examples:run",
         "examples:run": "node_modules/.bin/webpack-dev-server --config ./config/webpack.config.js",
+        "examples:build": "node_modules/.bin/webpack --config ./config/webpack.config.js",
         "tsc:watch": "tsc -w",
         "clean": "del-cli -f node_modules && del-cli -f yarn.lock && yarn",
         "build": "del-cli -f .publish && tsc",
