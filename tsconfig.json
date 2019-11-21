@@ -2,6 +2,7 @@
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "downlevelIteration": true,
+        "declaration": true,
         "forceConsistentCasingInFileNames": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,

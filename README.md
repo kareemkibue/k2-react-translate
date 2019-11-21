@@ -418,12 +418,13 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 ## Known Issues 
 - Routing works with `<BrowserRouter/>` for now
-- `<LocalizedNavLink/>` is yet to be adapted from `<NavLink/>`. `<LocalizedLink>` can be a short-term
+- `<LocalizedNavLink/>` is yet to be adapted from `<NavLink/>`. `<LocalizedLink>` works equally as well, with the exception of the `activeClassName` prop.
 
 ## Changelog
 
 Version | Log
 ---|---
+0.4.1 | - Add missing TypeScript declarations
 0.4.0 | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs
 0.3.0 | - Update docs
 0.2.0 | - Publish missing sub-modules
