@@ -3,7 +3,7 @@
 <!-- [![Build Status](https://travis-ci.org/kareemkibue/k2-react-translate.svg?branch=master)](https://travis-ci.org/kareemkibue/k2-react-translate)
 [![Coverage Status](https://coveralls.io/repos/github/kareemkibue/k2-react-translate/badge.svg?branch=master)](https://coveralls.io/github/kareemkibue/k2-react-translate?branch=master) -->
 
-A simple, easy-to-use translation library based on Context API, with optional localized routing.
+A simple, easy-to-use translation library based on React's Context API, with optional localized routing.
 
 See demo on [CodeSandbox](https://codesandbox.io/s/confident-microservice-l0een).
 
