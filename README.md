@@ -18,7 +18,15 @@ A simple, easy-to-use translation library based on React's Context API, with opt
 
 See demo on [CodeSandbox](https://codesandbox.io/s/confident-microservice-l0een).
 
+<iframe
+     src="https://codesandbox.io/embed/confident-microservice-l0een?autoresize=1&fontsize=12&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="k2-react-translate-demo"
+     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+   >
 [![image](https://user-images.githubusercontent.com/6430272/69345005-61690680-0c3e-11ea-9d1b-d82a16567e8e.png)](https://codesandbox.io/s/confident-microservice-l0een)
+</iframe>
 
 ## Table of Contents
 

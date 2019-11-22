@@ -41,6 +41,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
     if (localizeUrls && urlLanguageSetting === null) {
       this.insertLanguageToUrl(resolvedLanguage);
     }
+    // else get language from localStorage
 
     this.setLanguage(resolvedLanguage);
   }
