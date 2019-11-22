@@ -20,10 +20,6 @@ See demo on [CodeSandbox](https://codesandbox.io/s/confident-microservice-l0een)
 
 [![image](https://user-images.githubusercontent.com/6430272/69345005-61690680-0c3e-11ea-9d1b-d82a16567e8e.png)](https://codesandbox.io/s/confident-microservice-l0een)
 
-https://codesandbox.io/embed/confident-microservice-l0een?autoresize=1&fontsize=12&hidenavigation=1&theme=dark
-
-https://codesandbox.io/s/confident-microservice-l0een?autoresize=1&fontsize=12&hidenavigation=1&theme=dark
-
 ## Table of Contents
 
 - [Problem Statement](#problem-statement)
@@ -465,10 +461,11 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 ## Changelog
 
-| Version | Log                                                                               |
-| ------- | --------------------------------------------------------------------------------- |
-| 0.4.1   | - Add missing TypeScript declarations                                             |
-| 0.4.0   | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs |
-| 0.3.0   | - Update docs                                                                     |
-| 0.2.0   | - Publish missing sub-modules                                                     |
-| 0.1.0   | - Initial publishd                                                                |
+| Version | Log                                                                                                               |
+| ------- | ----------------------------------------------------------------------------------------------------------------- |
+| 0.5.0   | - Add `localizeUrl` LocaleProvider prop<br>- Add optional save language to LocalStorage if `localizeUrl` is false |
+| 0.4.1   | - Add missing TypeScript declarations                                                                             |
+| 0.4.0   | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs                                 |
+| 0.3.0   | - Update docs                                                                                                     |
+| 0.2.0   | - Publish missing sub-modules                                                                                     |
+| 0.1.0   | - Initial publishd                                                                                                |
