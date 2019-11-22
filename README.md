@@ -80,6 +80,8 @@ If using TypeScript in VS Code, add the following configuration to your `tsconfi
 
 Setup your translations:
 
+If using VS Code, the richie5um2's [Sort JSON objects](https://marketplace.visualstudio.com/items?itemName=richie5um2.vscode-sort-json) marketplace extension may help to keep your translations file organized.
+
 ```jsonc
 // translations.json
 {
