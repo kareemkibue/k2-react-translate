@@ -1,11 +1,14 @@
 # k2-react-translate
 
-![npm](https://img.shields.io/npm/v/k2-react-translate?flat)<br/>
-![npm](https://img.shields.io/npm/dm/k2-react-translate?flat)
-![npm](https://img.shields.io/npm/dw/k2-react-translate?flat)<br/>
-![GitHub issues](https://img.shields.io/github/issues/kareemkibue/k2-react-translate?flat)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/kareemkibue/k2-react-translate?flat)<br/>
-![GitHub](https://img.shields.io/github/license/kareemkibue/k2-react-translate?flat)
+[![npm](https://img.shields.io/npm/v/k2-react-translate?flat)](https://www.npmjs.com/package/k2-react-translate)
+<br/>
+[![npm](https://img.shields.io/npm/dm/k2-react-translate?flat)](https://www.npmjs.com/package/k2-react-translate)
+[![npm](https://img.shields.io/npm/dw/k2-react-translate?flat)](https://www.npmjs.com/package/k2-react-translate)
+<br/>
+[![GitHub issues](https://img.shields.io/github/issues/kareemkibue/k2-react-translate?flat)](https://github.com/kareemkibue/k2-react-translate/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/kareemkibue/k2-react-translate?flat)](https://github.com/kareemkibue/k2-react-translate/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
+<br/>
+[![GitHub](https://img.shields.io/github/license/kareemkibue/k2-react-translate?flat)](https://github.com/kareemkibue/k2-react-translate/blob/master/LICENSE)
 
 A simple, easy-to-use translation library based on React's Context API, with optional localized `react-router` routing.
 
