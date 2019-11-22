@@ -9,6 +9,10 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/kareemkibue/k2-react-translate?flat)](https://github.com/kareemkibue/k2-react-translate/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
 <br/>
 [![GitHub](https://img.shields.io/github/license/kareemkibue/k2-react-translate?flat)](https://github.com/kareemkibue/k2-react-translate/blob/master/LICENSE)
+<br/>
+![GitHub stars](https://img.shields.io/github/stars/kareemkibue/k2-react-translate?style=social)
+![GitHub stars](https://img.shields.io/github/forks/kareemkibue/k2-react-translate?style=social)
+![GitHub stars](https://img.shields.io/github/watchers/kareemkibue/k2-react-translate?style=social)
 
 A simple, easy-to-use translation library based on React's Context API, with optional localized `react-router` routing.
 
