@@ -55,7 +55,7 @@ Typescirpt type definitions come bundled in.
 
 ### Project Setup
 
-If using TypeScript in VS Code, add the following configuration to your `tsconfig.json` to allow for importing json files:
+If using TypeScript in VS Code, add the following configuration to your `tsconfig.json` to allow for importing json files into your modules:
 
 ```jsonc
 // tsconfig.json
@@ -102,7 +102,11 @@ import { App } from "./App";
 import translations from "./translations.json";
 
 ReactDOM.render(
-  <LocaleProvider translations={translations} languages={["en", "fr"]}>
+  <LocaleProvider
+    translations={translations}
+    languages={["en", "fr"]}
+    localizeUrls={false}
+  >
     <App />
   </LocaleProvider>,
   document.getElementById("app")
