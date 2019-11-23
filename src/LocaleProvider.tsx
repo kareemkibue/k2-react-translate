@@ -7,7 +7,7 @@ interface IProps {
   defaultLanguage?: string;
   languages: string[];
   translations: { [field: string]: any };
-  localizeUrls?: boolean;
+  localizeUrls?: boolean; // * Manage languageCode in URL upon navigation, default=false
 }
 
 interface IState {
@@ -22,18 +22,18 @@ class LocaleProvider extends React.Component<IProps, IState> {
   };
 
   componentDidMount() {
-    this.resolveIntialialLanguage();
+    this.resolveIntialLanguage();
   }
 
   /**
    * * Resolve the initiale language setting from hard setting or from the browser setting
    */
-  private resolveIntialialLanguage(): void {
+  private resolveIntialLanguage(): void {
     const { defaultLanguage, languages, localizeUrls = false } = this.props;
     const urlLanguageSetting: string | null = this.getLanguageFromUrl();
     const browserLanguageSetting: string = navigator.language.split(/[-_]/)[0]; // * language without region code
     const resolvedLanguage: string =
-      urlLanguageSetting ||
+      this.getLanguageFromBrowserState() ||
       defaultLanguage ||
       browserLanguageSetting ||
       languages[0];
@@ -41,9 +41,19 @@ class LocaleProvider extends React.Component<IProps, IState> {
     if (localizeUrls && urlLanguageSetting === null) {
       this.insertLanguageToUrl(resolvedLanguage);
     }
-    // else get language from localStorage
 
     this.setLanguage(resolvedLanguage);
+  }
+
+  private getLanguageFromBrowserState(): string | null {
+    const { localizeUrls = false } = this.props;
+
+    if (localizeUrls) {
+      window.localStorage.removeItem("k2-lang");
+      return this.getLanguageFromUrl();
+    } else {
+      return window.localStorage.getItem("k2-lang") || "";
+    }
   }
 
   private setLanguage = (language: string): void => {
@@ -56,7 +66,11 @@ class LocaleProvider extends React.Component<IProps, IState> {
           language: language.toLowerCase()
         },
         () => {
-          localizeUrls && this.updateUrl();
+          if (localizeUrls) {
+            this.updateUrl();
+          } else {
+            this.updateBrowserStorage();
+          }
         }
       );
     } else {
@@ -74,11 +88,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
       return url.toLowerCase().includes(language.toLowerCase());
     });
 
-    if (matchedLanguage) {
-      return matchedLanguage;
-    }
-
-    return null;
+    return matchedLanguage || null;
   };
 
   private insertLanguageToUrl(language: string): void {
@@ -107,6 +117,11 @@ class LocaleProvider extends React.Component<IProps, IState> {
     );
     localizedHistory.push(updatedUrl);
   };
+
+  private updateBrowserStorage(): void {
+    const { language } = this.state;
+    window.localStorage.setItem("k2-lang", language);
+  }
 
   private handleError(
     errorCode: "NO_KEY" | "NO_VAL" | "NO_VAR" | "NO_CONFIG",

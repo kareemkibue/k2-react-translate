@@ -463,11 +463,11 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 
 ## Changelog
 
-| Version | Log                                                                                                               |
-| ------- | ----------------------------------------------------------------------------------------------------------------- |
-| 0.5.0   | - Add `localizeUrl` LocaleProvider prop<br>- Add optional save language to LocalStorage if `localizeUrl` is false |
-| 0.4.1   | - Add missing TypeScript declarations                                                                             |
-| 0.4.0   | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs                                 |
-| 0.3.0   | - Update docs                                                                                                     |
-| 0.2.0   | - Publish missing sub-modules                                                                                     |
-| 0.1.0   | - Initial publishd                                                                                                |
+| Version | Log                                                                                                                 |
+| ------- | ------------------------------------------------------------------------------------------------------------------- |
+| 0.5.0   | - Add `localizeUrl` LocaleProvider _prop_<br>- Add optional save language to LocalStorage if `localizeUrl` is false |
+| 0.4.1   | - Add missing TypeScript declarations                                                                               |
+| 0.4.0   | - Cleanup static LocaleProvider language codes<br>- Add examples<br>- Update docs                                   |
+| 0.3.0   | - Update docs                                                                                                       |
+| 0.2.0   | - Publish missing sub-modules                                                                                       |
+| 0.1.0   | - Initial publishd                                                                                                  |
