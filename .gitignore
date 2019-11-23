@@ -19,6 +19,7 @@ package-lock.json
 
 #Compiled files
 .publish/
+dist/
 *.map
 
 #Log files
