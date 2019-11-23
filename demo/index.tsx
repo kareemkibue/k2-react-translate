@@ -5,8 +5,13 @@ import { App } from './App';
 import translations from './translations.json';
 
 ReactDOM.render(
-	<LocaleProvider translations={translations} languages={['en', 'fr', 'sw']} defaultLanguage="en">
-		<App />
-	</LocaleProvider>,
-	document.getElementById('root')
+  <LocaleProvider
+    translations={translations}
+    languages={["en", "fr", "sw"]}
+    defaultLanguage="en"
+    localizeUrls={true}
+  >
+    <App />
+  </LocaleProvider>,
+  document.getElementById("root")
 );

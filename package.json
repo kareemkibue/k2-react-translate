@@ -1,6 +1,6 @@
 {
     "name": "k2-react-translate",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": "A translation library with routing",
     "main": "index.js",
     "types": "index.d.ts",
@@ -30,7 +30,7 @@
         "npm:copy": "node_modules/.bin/copyfiles package.json yarn.lock readme.md .npmignore .publish",
         "npm:prepare": "npm run build && npm test && npm run npm:copy",
         "npm:publish": "npm run npm:prepare && cd .publish && npm publish",
-        "postpublish": "echo 'k2-React published successfully to NPM.' ",
+        "postpublish": "echo 'k2-react-translate has been published successfully to NPM.' ",
         "postinstall": "npm run del:cache",
         "del:cache": "del-cli -f ./.cache && del-cli -f ./node_modules/@types/react-native"
     },
