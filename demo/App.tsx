@@ -35,7 +35,7 @@ const App: React.FunctionComponent<{}> = () => {
     <Grid>
       <AppStyles />
       <Header />
-      <LocalizedRoutes localize={false} applySwitch={true} routes={routes} />
+      <LocalizedRoutes localize={true} applySwitch={true} routes={routes} />
       <Footer />
     </Grid>
   );
@@ -60,19 +60,11 @@ const Header: React.FunctionComponent<{}> = () => {
 
   return (
     <HeaderWrapper>
-      <LocalizedLink localize={false} to="/">
-        {translate("LOGO")}
-      </LocalizedLink>
+      <LocalizedLink to="/">{translate("LOGO")}</LocalizedLink>
       <nav>
-        <LocalizedLink localize={false} to="/">
-          {translate("HOME")}
-        </LocalizedLink>
-        <LocalizedLink localize={false} to="/about">
-          {translate("ABOUT_US")}
-        </LocalizedLink>
-        <LocalizedLink localize={false} to="/contact">
-          {translate("CONTACT_US")}
-        </LocalizedLink>
+        <LocalizedLink to="/">{translate("HOME")}</LocalizedLink>
+        <LocalizedLink to="/about">{translate("ABOUT_US")}</LocalizedLink>
+        <LocalizedLink to="/contact">{translate("CONTACT_US")}</LocalizedLink>
         <select
           name="changeLanguage"
           onChange={handleLanguageChange}
