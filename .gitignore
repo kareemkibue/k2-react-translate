@@ -12,6 +12,8 @@ node_modules/
 .tscache/
 package-lock.json
 .cache/
+coverage/
+
 
 #Conflict files
 *.orig
