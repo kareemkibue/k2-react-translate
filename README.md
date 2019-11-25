@@ -54,9 +54,9 @@ npm i -S -E k2-react-translate
 
 ### `peerDependencies`
 
-- [`react@16.2.0+`](https://github.com/facebook/react)
-  - `react@16.8.0+` would have to be installed to use the `useTranslate` hook.
-- [`react-dom@16.2.0+`](https://github.com/facebook/react/tree/master/packages/react-dom)
+- [`react@^16.2.0`](https://github.com/facebook/react)
+  - `react@^16.2.0` would have to be installed to use the `useTranslate` hook.
+- [`react-dom@^16.2.0`](https://github.com/facebook/react/tree/master/packages/react-dom)
 - [`react-router-dom`](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 - [`history`](https://github.com/ReactTraining/history)
 
@@ -151,7 +151,7 @@ See [Project Setup](Project-Setup) above.
 
 A custom hook for use in Function Components.
 
-**Dependencies:** `react@16.8.0+`, `react-dom@16.8.0+`
+**Dependencies:** `react@^16.8.0`, `react-dom@^16.8.0`
 
 #### Usage
 
