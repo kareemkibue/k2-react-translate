@@ -38,8 +38,8 @@ jobs:
         yarn test 
       env:
         NPM_TOKEN: secrets.NPM_TOKEN                 
-    - name: Publish
-      run: 
-        npm run npm:publish        
-      env:
-        NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+#    - name: Publish
+#      run: 
+#        npm run npm:publish        
+#      env:
+#        NPM_TOKEN: ${{secrets.NPM_TOKEN}}
