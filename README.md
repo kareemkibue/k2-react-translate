@@ -461,6 +461,7 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 - Routing works with `<BrowserRouter/>` for now
 - `<LocalizedNavLink/>` is yet to be adapted from `<NavLink/>`. `<LocalizedLink>` works equally as well, with the exception of the `activeClassName` prop.
 
+<!--
 ## Changelog
 
 | Version | Log                                                                                                                 |
@@ -471,3 +472,5 @@ const MyComponent: React.FunctionComponent<{}>=()=>{
 | 0.3.0   | - Update docs                                                                                                       |
 | 0.2.0   | - Publish missing sub-modules                                                                                       |
 | 0.1.0   | - Initial publishd                                                                                                  |
+
+-->
