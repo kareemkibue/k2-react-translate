@@ -1,6 +1,6 @@
 {
     "name": "k2-react-translate",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "description": "A react translation library with optional routing",
     "main": "index.js",
     "types": "index.d.ts",
@@ -36,7 +36,7 @@
     },
     "peerDependencies": {
         "react": "^16.2.0",
-        "react-router-dom": "^16.2.0"
+        "react-router-dom": "*"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "4.2.4",
