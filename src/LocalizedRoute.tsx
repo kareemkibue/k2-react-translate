@@ -5,7 +5,7 @@ import * as React from 'react';
 import {
     Route, RouteComponentProps as IRouteComponentProps, RouteProps as IRouteProps
 } from 'react-router-dom';
-import { localizer } from './localizer';
+import { getLocalizedPath, getLocalizedRoute } from './localizer';
 import { Translator } from './Translator';
 
 interface IProps extends IRouteProps {
@@ -23,7 +23,7 @@ const LocalizedRoute: React.FunctionComponent<IProps | any> = (props) => {
 
 	const interceptHistory = (history: IHistory, language: string) => {
 		const push = (pushedUrl: string) => {
-			const localizedUrl: string = localizer.getLocalizedRoute(language, pushedUrl);
+			const localizedUrl: string = getLocalizedRoute(language, pushedUrl);
 			history.push(localizedUrl);
 		};
 
@@ -42,7 +42,7 @@ const LocalizedRoute: React.FunctionComponent<IProps | any> = (props) => {
 
 	const getInterceptedPath = (): string | string[] | undefined => {
 		if (path && localize) {
-			return localizer.getLocalizedPath(path);
+			return getLocalizedPath(path);
 		}
 		if (path) {
 			return path;

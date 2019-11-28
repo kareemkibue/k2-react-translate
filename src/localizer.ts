@@ -9,11 +9,7 @@ const getLocalizedRoute = (language: string | null, url: any): any => {
     if (typeof url === 'undefined') {
         return url;
     }
-    // TODO Fix to allow for external linking - @kareemkibue
-    // if (url.indexOf('http') > -1 || url.indexOf('//') > -1) {
-    //     console.log(url)
-    //     return url;
-    // }
+
     if (typeof url === 'string') {
         return getLocalizedUrl(languagePrefix, url);
     }
@@ -51,10 +47,8 @@ const getLanguageFromUrl = (languages: string[], url: string = window.location.p
     }) || ''
 }
 
-const localizer = {
+export {
     getLocalizedRoute,
     getLocalizedPath,
     getLanguageFromUrl
 };
-
-export { localizer };
