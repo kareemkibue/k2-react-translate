@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Redirect, RedirectProps as IRedirectProps } from 'react-router-dom';
-import { localizer } from './localizer';
+import { getLocalizedRoute } from './localizer';
 import { Translator } from './Translator';
 
 interface IProps {
@@ -15,7 +15,7 @@ const LocalizedRedirect: React.FunctionComponent<IRedirectProps & IProps> = (
   const { from, to, localize = true, ...rest } = props;
 
   const getLocalizedUrl = (language: string, url: any): string => {
-    return localizer.getLocalizedRoute(language, url);
+    return getLocalizedRoute(language, url);
   };
 
   if (!localize) {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RedirectProps as IRedirectProps, Switch } from 'react-router-dom';
 import { LocalizedRedirect } from './LocalizedRedirect';
 import { ILocalizedRouteProps, LocalizedRoute } from './LocalizedRoute';
-import { localizer } from './localizer';
+import { getLocalizedPath, getLocalizedRoute } from './localizer';
 import { Translator } from './Translator';
 
 type Route = ILocalizedRouteProps | IRedirectProps | { routes: Route[] };
@@ -47,10 +47,10 @@ const LocalizedRoutes: React.FunctionComponent<IProps> = props => {
 
         const resolveRedirectFrom = (language: string) => {
           if (localize) {
-            return localizer.getLocalizedRoute(language, from);
+            return getLocalizedRoute(language, from);
           }
           if (localizeRouteConfig) {
-            return localizer.getLocalizedRoute(language, from);
+            return getLocalizedRoute(language, from);
           }
           return from;
         };
@@ -58,11 +58,11 @@ const LocalizedRoutes: React.FunctionComponent<IProps> = props => {
         const resolvePath = () => {
           // * Singular localize setting passed in config should take presedence
           if (localize) {
-            return localizer.getLocalizedPath(path);
+            return getLocalizedPath(path);
           }
           // * localize config passed as Config prop takes 2nd stage
           if (localizeRouteConfig) {
-            return localizer.getLocalizedPath(path);
+            return getLocalizedPath(path);
           }
           return path;
         };

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Router } from 'react-router-dom';
 import { LocaleContext } from './LocaleContext';
 import { localizedHistory } from './localizedHistory';
+import { getLanguageFromUrl } from './localizer';
 
 interface IProps {
   defaultLanguage?: string;
@@ -82,13 +83,10 @@ class LocaleProvider extends React.Component<IProps, IState> {
 
   private getLanguageFromUrl = (): string | null => {
     const { languages } = this.props;
-    const url: string = location.pathname;
 
-    const matchedLanguage = languages.find((language: string) => {
-      return url.toLowerCase().includes(language.toLowerCase());
-    });
 
-    return matchedLanguage || null;
+    return getLanguageFromUrl(languages)
+
   };
 
   private insertLanguageToUrl(language: string): void {
