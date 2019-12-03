@@ -44,7 +44,7 @@ const getLanguageFromUrl = (languages: string[], url: string = window.location.p
     return languages.find((language: string) => {
 
         return url.toLowerCase().includes(language.toLowerCase());
-    }) || ''
+    }) || null
 }
 
 export {
