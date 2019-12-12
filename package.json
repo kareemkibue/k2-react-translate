@@ -51,7 +51,7 @@
         "babel-jest": "24.9.0",
         "circular-dependency-plugin": "5.2.0",
         "copyfiles": "2.1.1",
-        "css-loader": "3.3.0",
+        "css-loader": "3.3.2",
         "del-cli": "3.0.0",
         "eslint-loader": "3.0.3",
         "file-loader": "5.0.2",
