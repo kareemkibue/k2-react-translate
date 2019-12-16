@@ -72,7 +72,7 @@
         "typescript": "3.7.3",
         "typescript-plugin-styled-components": "1.4.3",
         "typescript-styled-plugin": "0.15.0",
-        "webpack": "4.41.2",
+        "webpack": "4.41.3",
         "webpack-cli": "3.3.10",
         "webpack-dev-server": "3.9.0"
     }
