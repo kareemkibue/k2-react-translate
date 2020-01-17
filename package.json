@@ -39,7 +39,7 @@
         "react-router-dom": "*"
     },
     "devDependencies": {
-        "@testing-library/jest-dom": "4.2.4",
+        "@testing-library/jest-dom": "5.0.0",
         "@testing-library/react": "9.4.0",
         "@types/jest": "24.0.9",
         "@types/node": "13.1.7",
