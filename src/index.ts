@@ -9,3 +9,4 @@ export * from './LocalizedRoutes';
 export * from './Translator';
 export * from './localizer';
 export * from './useTranslate';
+export * from './useHistory';
