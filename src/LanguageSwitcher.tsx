@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { LocaleContext } from './LocaleContext';
+import { ChangeLanguage } from './types';
 
 interface IProps {
-	onClick: (switchLanguage: (language: string) => void) => void;
+	onClick: (switchLanguage: ChangeLanguage) => void;
 }
 
 const LanguageSwitcher: React.FunctionComponent<IProps> = (props) => {
 	const { onClick, children } = props;
 
-	const handleClick = (changeLanguage: (language: string) => void): void => {
+	const handleClick = (changeLanguage: ChangeLanguage): void => {
 		onClick(changeLanguage);
 	};
 

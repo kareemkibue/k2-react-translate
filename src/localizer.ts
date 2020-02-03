@@ -1,23 +1,24 @@
+import { LocationDescriptorObject } from 'history';
+
 const getLocalizedUrl = (language: string, url: string): string => {
     return `/${language + url}`;
 };
 
-// TODO Resolve types, eliminate any - @kareemkibue
-const getLocalizedRoute = (language: string | null, url: any): any => {
+const getLocalizedRoute = (language: string | null, location: string | LocationDescriptorObject<any>): any => {
     const languagePrefix: string = language === null ? ':language' : language;
 
-    if (typeof url === 'undefined') {
-        return url;
+    if (typeof location === 'undefined') {
+        return location;
     }
 
-    if (typeof url === 'string') {
-        return getLocalizedUrl(languagePrefix, url);
+    if (typeof location === 'string') {
+        return getLocalizedUrl(languagePrefix, location);
     }
 
     // * if the history push arg is an object, ie { pathname: sting, search: query, state: someState}
     return {
-        ...url,
-        pathname: getLocalizedUrl(languagePrefix, url.pathname),
+        ...location,
+        pathname: getLocalizedUrl(languagePrefix, location.pathname || ''),
     };
 };
 
@@ -42,7 +43,7 @@ const getLocalizedPath = (
 
 const getLanguageFromUrl = (languages: string[], url: string = window.location.pathname): string | null => {
     return languages.find((language: string) => {
-
+        // TODO Replace with regex
         return url.toLowerCase().includes(language.toLowerCase());
     }) || null
 }

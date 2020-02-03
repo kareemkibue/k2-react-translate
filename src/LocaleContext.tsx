@@ -1,22 +1,14 @@
 import * as React from 'react';
+import { ChangeLanguage, ITranslations, Translate, TranslateAndParse } from './types';
 
 interface ILocalizerContext<TLanguage> {
 	language: TLanguage;
-	translations: { [field: string]: any };
-	changeLanguage: (language: string) => void;
-	performTranslation: (id: string, vars?: { [field: string]: string | number }) => string;
-	performTranslationAndParse: (
-		id: string,
-		vars?: { [field: string]: string | number }
-	) => React.ReactNode;
+	translations: ITranslations;
+	changeLanguage: ChangeLanguage;
+	performTranslation: Translate;
+	performTranslationAndParse: TranslateAndParse;
 }
 
-const LocaleContext = React.createContext<ILocalizerContext<any>>({
-	language: 'en',
-	translations: {},
-	changeLanguage: () => {},
-	performTranslation: () => '',
-	performTranslationAndParse: () => '',
-});
+const LocaleContext = React.createContext<ILocalizerContext<any>>({} as ILocalizerContext<any>);
 
 export { LocaleContext, ILocalizerContext };
