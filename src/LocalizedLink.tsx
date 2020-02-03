@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Link, LinkProps as ILinkProps } from 'react-router-dom';
-import { localizer } from './localizer';
+import { getLocalizedRoute } from './localizer';
 import { Translator } from './Translator';
 
 interface IProps extends ILinkProps {
@@ -13,7 +13,7 @@ const LocalizedLink: React.FunctionComponent<IProps> = (props) => {
   const { to, localize = true, ...rest } = props;
 
   const getLocalizedUrl = (language: string, url: any): string => {
-    return localizer.getLocalizedRoute(language, url);
+    return getLocalizedRoute(language, url);
   };
 
   if (!localize) {

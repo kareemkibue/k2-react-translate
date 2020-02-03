@@ -1,3 +1,4 @@
+export * from './types';
 export * from './localizedHistory';
 export * from './LocalizedLink';
 export * from './LanguageSwitcher';
@@ -9,3 +10,5 @@ export * from './LocalizedRoutes';
 export * from './Translator';
 export * from './localizer';
 export * from './useTranslate';
+export * from './useHistory';
+

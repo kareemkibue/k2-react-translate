@@ -1,52 +1,55 @@
+import { LocationDescriptorObject } from 'history';
+
 const getLocalizedUrl = (language: string, url: string): string => {
-  return `/${language + url}`;
+    return `/${language + url}`;
 };
 
-// TODO Resolve types, eliminate any - @kareemkibue
-const getLocalizedRoute = (language: string | null, url: any): any => {
-  const languagePrefix: string = language === null ? ':language' : language;
+const getLocalizedRoute = (language: string | null, location: string | LocationDescriptorObject<any>): any => {
+    const languagePrefix: string = language === null ? ':language' : language;
 
-  if (typeof url === 'undefined') {
-    return url;
-  }
-  // TODO Fix to allow for external linking - @kareemkibue
-  // if (url.indexOf('http') > -1 || url.indexOf('//') > -1) {
-  //     console.log(url)
-  //     return url;
-  // }
-  if (typeof url === 'string') {
-    return getLocalizedUrl(languagePrefix, url);
-  }
+    if (typeof location === 'undefined') {
+        return location;
+    }
 
-  // * if the history push arg is an object, ie { pathname: sting, search: query, state: someState}
-  return {
-    ...url,
-    pathname: getLocalizedUrl(languagePrefix, url.pathname),
-  };
+    if (typeof location === 'string') {
+        return getLocalizedUrl(languagePrefix, location);
+    }
+
+    // * if the history push arg is an object, ie { pathname: sting, search: query, state: someState}
+    return {
+        ...location,
+        pathname: getLocalizedUrl(languagePrefix, location.pathname || ''),
+    };
 };
 
 const concatenateLanguageParam = (path: string): string => {
-  return '/:language' + path;
+    return '/:language' + path;
 };
 
 const getLocalizedPath = (
-  path: string | string[]
+    path: string | string[]
 ): string | string[] | undefined => {
-  if (Array.isArray(path)) {
-    return path.map((singlePath: string) =>
-      concatenateLanguageParam(singlePath)
-    );
-  }
-  if (typeof path === 'string') {
-    return concatenateLanguageParam(path);
-  }
+    if (Array.isArray(path)) {
+        return path.map((singlePath: string) =>
+            concatenateLanguageParam(singlePath)
+        );
+    }
+    if (typeof path === 'string') {
+        return concatenateLanguageParam(path);
+    }
 
-  return undefined;
+    return undefined;
 };
 
-const localizer = {
-  getLocalizedRoute,
-  getLocalizedPath,
-};
+const getLanguageFromUrl = (languages: string[], url: string = window.location.pathname): string | null => {
+    return languages.find((language: string) => {
+        // TODO Replace with regex
+        return url.toLowerCase().includes(language.toLowerCase());
+    }) || null
+}
 
-export { localizer };
+export {
+    getLocalizedRoute,
+    getLocalizedPath,
+    getLanguageFromUrl
+};
