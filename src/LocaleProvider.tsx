@@ -35,7 +35,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		const urlLanguageSetting: string | null = this.getLanguageFromUrl();
 		const browserLanguageSetting: string = navigator.language.split(/[-_]/)[0]; // * language without region code
 		const resolvedLanguage: string =
-			this.getLanguageFromBrowserState() ||
+			this.getLanguageFromLocationState() ||
 			defaultLanguage ||
 			browserLanguageSetting ||
 			languages[0];
@@ -47,7 +47,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		this.setLanguage(resolvedLanguage);
 	}
 
-	private getLanguageFromBrowserState(): string | null {
+	private getLanguageFromLocationState(): string | null {
 		const { localizeUrls = false } = this.props;
 
 		if (localizeUrls) {
