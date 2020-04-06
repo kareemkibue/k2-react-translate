@@ -201,7 +201,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 	}
 
 	private performTranslation = (
-		id: string | null | undefined,
+		id: string | null | undefined | false,
 		vars?: TranslationVariables
 	): string => {
 		const { language } = this.state;
