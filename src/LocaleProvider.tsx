@@ -200,9 +200,16 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		return parsedText;
 	}
 
-	private performTranslation = (id: string, vars?: TranslationVariables): string => {
+	private performTranslation = (
+		id: string | null | undefined,
+		vars?: TranslationVariables
+	): string => {
 		const { language } = this.state;
 		const { translations } = this.props;
+
+		if (!id) {
+			return `⛔ Missing translation key`;
+		}
 
 		if (!translations) {
 			this.handleError('NO_CONFIG', language, id);
