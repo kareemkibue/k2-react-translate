@@ -1,6 +1,7 @@
 export * from './types';
 export * from './localizedHistory';
 export * from './LocalizedLink';
+export * from './LocalizedNavLink';
 export * from './LanguageSwitcher';
 export * from './LocalizedRedirect';
 export * from './LocaleContext';

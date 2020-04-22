@@ -149,7 +149,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 	}
 
 	/**
-	 * Perfroms variables search/replace of vars on the set translation
+	 * * Perfroms variables search/replace of vars on the set translation
 	 * @param textToReplaceVars
 	 * @param searchValue
 	 * @param replaceValue
@@ -162,7 +162,9 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		id: string,
 		varKey: string
 	): string {
-		const textWithReplacedVars: string = textToReplaceVars.replace(searchValue, replaceValue);
+		const searchRegex = new RegExp(searchValue, 'gi');
+		const textWithReplacedVars: string = textToReplaceVars.replace(searchRegex, replaceValue);
+
 		// * Checks if variable is missing from the translation doc
 		const isVarReplacementSuccessful: boolean = !this.compareSearchedAndReplacedString(
 			textToReplaceVars,
