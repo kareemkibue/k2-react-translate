@@ -35,7 +35,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		const urlLanguageSetting: string | null = this.getLanguageFromUrl();
 		const browserLanguageSetting: string = navigator.language.split(/[-_]/)[0]; // * language without region code
 		const resolvedLanguage: string =
-			this.getLanguageFromBrowserState() ||
+			this.getLanguageFromLocationState() ||
 			defaultLanguage ||
 			browserLanguageSetting ||
 			languages[0];
@@ -47,7 +47,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		this.setLanguage(resolvedLanguage);
 	}
 
-	private getLanguageFromBrowserState(): string | null {
+	private getLanguageFromLocationState(): string | null {
 		const { localizeUrls = false } = this.props;
 
 		if (localizeUrls) {
@@ -149,7 +149,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
 	}
 
 	/**
-	 * Perfroms variables search/replace of vars on the set translation
+	 * * Perfroms variables search/replace of vars on the set translation
 	 * @param textToReplaceVars
 	 * @param searchValue
 	 * @param replaceValue
@@ -162,7 +162,9 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		id: string,
 		varKey: string
 	): string {
-		const textWithReplacedVars: string = textToReplaceVars.replace(searchValue, replaceValue);
+		const searchRegex = new RegExp(searchValue, 'gi');
+		const textWithReplacedVars: string = textToReplaceVars.replace(searchRegex, replaceValue);
+
 		// * Checks if variable is missing from the translation doc
 		const isVarReplacementSuccessful: boolean = !this.compareSearchedAndReplacedString(
 			textToReplaceVars,
@@ -200,9 +202,16 @@ class LocaleProvider extends React.Component<IProps, IState> {
 		return parsedText;
 	}
 
-	private performTranslation = (id: string, vars?: TranslationVariables): string => {
+	private performTranslation = (
+		id: string | null | undefined | false,
+		vars?: TranslationVariables
+	): string => {
 		const { language } = this.state;
 		const { translations } = this.props;
+
+		if (!id) {
+			return `⛔ Missing translation key`;
+		}
 
 		if (!translations) {
 			this.handleError('NO_CONFIG', language, id);

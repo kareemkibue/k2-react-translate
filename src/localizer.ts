@@ -42,9 +42,11 @@ const getLocalizedPath = (
 };
 
 const getLanguageFromUrl = (languages: string[], url: string = window.location.pathname): string | null => {
+
+
     return languages.find((language: string) => {
-        // TODO Replace with regex
-        return url.toLowerCase().includes(language.toLowerCase());
+        const regExp = new RegExp(`^/${language}`, 'i')
+        return url.search(regExp) >= 0
     }) || null
 }
 

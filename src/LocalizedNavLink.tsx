@@ -1,15 +1,15 @@
 /*eslint no-redeclare: "off" */
 
 import * as React from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { NavLink, NavLinkProps } from 'react-router-dom';
 import { getLocalizedRoute } from './localizer';
 import { Translator } from './Translator';
 
-interface IProps extends LinkProps {
+interface IProps extends NavLinkProps {
 	localize?: boolean; // * default true
 }
 
-const LocalizedLink: React.FunctionComponent<IProps> = (props) => {
+const LocalizedNavLink: React.FunctionComponent<IProps> = (props) => {
 	const { to, localize = true, ...rest } = props;
 
 	const getLocalizedUrl = (language: string, url: any): string => {
@@ -17,16 +17,16 @@ const LocalizedLink: React.FunctionComponent<IProps> = (props) => {
 	};
 
 	if (!localize) {
-		return <Link to={to} {...rest} />;
+		return <NavLink to={to} {...rest} />;
 	}
 
 	return (
 		<Translator
 			render={(language: string) => {
-				return <Link to={getLocalizedUrl(language, to)} {...rest} />;
+				return <NavLink to={getLocalizedUrl(language, to)} {...rest} />;
 			}}
 		/>
 	);
 };
 
-export { LocalizedLink, IProps as ILocalizedLinkProps };
+export { LocalizedNavLink, IProps as ILocalizedNavLinkProps };
