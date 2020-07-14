@@ -40,10 +40,11 @@
     },
     "devDependencies": {
         "@testing-library/jest-dom": "5.11.0",
-        "@testing-library/react": "10.4.5",
+        "@testing-library/react": "10.4.6",
         "@types/jest": "26.0.4",
-        "@types/node": "14.0.22",
+        "@types/node": "14.0.23",
         "@types/react": "16.9.43",
+        "@types/react-dom": "16.9.8",
         "@types/react-router-dom": "5.1.5",
         "@types/react-test-renderer": "16.9.2",
         "@types/styled-components": "5.1.1",
@@ -58,7 +59,7 @@
         "friendly-errors-webpack-plugin": "1.7.0",
         "hard-source-webpack-plugin": "0.13.1",
         "html-webpack-plugin": "4.3.0",
-        "jest": "25.5.4",
+        "jest": "26.1.0",
         "jest-extended": "0.11.5",
         "npm-run-all": "4.1.5",
         "react": "16.13.1",
@@ -68,13 +69,16 @@
         "react-test-renderer": "16.13.1",
         "style-loader": "1.2.1",
         "styled-components": "5.1.1",
-        "ts-jest": "25.5.1",
-        "typescript": "3.8.3",
+        "ts-jest": "26.1.2",
+        "typescript": "3.9.6",
         "typescript-plugin-styled-components": "1.4.4",
         "typescript-styled-plugin": "0.15.0",
         "webpack": "4.43.0",
         "webpack-cli": "3.3.12",
-        "webpack-dev-server": "3.11.0",
-        "@types/react-dom": "16.9.8"
+        "webpack-dev-server": "3.11.0"
+    },
+    "dependencies": {
+        "add": "2.0.6",
+        "yarn": "1.22.4"
     }
 }
