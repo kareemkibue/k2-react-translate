@@ -7530,10 +7530,10 @@ typescript-plugin-styled-components@1.5.0:
   resolved "https://registry.yarnpkg.com/typescript-plugin-styled-components/-/typescript-plugin-styled-components-1.5.0.tgz#39d345102a236e304a4e9a37c7b1c8a752a46072"
   integrity sha512-5x/30WvzlrD0h5MOlp/pFVQFNWCupeG6QqHvsYlsg9Qg1hxG614kf3p4FmgJ35UxKz0mREX7+4S1Li46gsM3eQ==
 
-typescript-styled-plugin@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/typescript-styled-plugin/-/typescript-styled-plugin-0.16.0.tgz#b1bde49e259c9dc312afbc3e683e9e7e413f24d0"
-  integrity sha512-I3UfkGzdy1js95EDtYMatBzDINOCWAW4E0+sE4+MG8gy3gaUyQOSi5NhvVNkF3zqWXY+z43g6MnmYy8QzqFhVQ==
+typescript-styled-plugin@0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/typescript-styled-plugin/-/typescript-styled-plugin-0.17.0.tgz#00f10d7291b2a359c0c7c054cc89ae41e6f4f4d5"
+  integrity sha512-w0wu8cjQcYDVLwQXDLhXhw6HWsZ6ALaR5nXKyvK0EGQ6ZpkUE2pp0q9/y3CEPiXnB+aCee3qQX59IPrGEG42cQ==
   dependencies:
     typescript-template-language-service-decorator "^2.2.0"
     vscode-css-languageservice "^5.1.1"
