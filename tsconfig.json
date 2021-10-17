@@ -2,17 +2,12 @@
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "downlevelIteration": true,
-        "declaration": true,
+        "declaration": false,
         "forceConsistentCasingInFileNames": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "jsx": "react",
-        "lib": [
-            "es2015",
-            "es2017",
-            "es2018",
-            "dom"
-        ],
+        "lib": ["es2015", "es2017", "es2018", "dom"],
         "module": "es6",
         "moduleResolution": "node",
         "noImplicitAny": true,
@@ -29,13 +24,6 @@
         "strictNullChecks": true,
         "target": "es5"
     },
-    "include": [
-        "./src",
-        "./global.d.ts"
-    ],
-    "exclude": [
-        "./tests/",
-        "node_modules",
-        ".publish"
-    ]
+    "include": ["./src", "./global.d.ts"],
+    "exclude": ["./tests/", "node_modules", ".publish"]
 }
