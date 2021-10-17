@@ -16,7 +16,7 @@
         "type": "git",
         "url": "https://github.com/kareemkibue/k2-react-translate.git"
     },
-    "author": "Kareem Kibue <mail@kareemkibue.com>",
+    "author": "kareem-kibue",
     "license": "MIT",
     "scripts": {
         "start": "npm-run-all --parallel tsc:watch examples:run",
