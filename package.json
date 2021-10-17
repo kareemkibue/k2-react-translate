@@ -1,6 +1,6 @@
 {
     "name": "k2-react-translate",
-    "version": "0.8.3",
+    "version": "0.8.4",
     "description": "A react translation library with optional routing",
     "main": "index.js",
     "types": "index.d.ts",
@@ -24,7 +24,7 @@
         "examples:build": "npx webpack --config ./config/webpack.config.js",
         "tsc:watch": "tsc -w",
         "clean": "del-cli -f node_modules && del-cli -f yarn.lock && yarn",
-        "build": "del-cli -f .publish && tsc",
+        "build": "del-cli -f .publish && tsc -p tsconfig.prod.json",
         "test": "npx jest --coverage --passWithNoTests",
         "test:watch": "npx jest --watchAll --passWithNoTests",
         "npm:copy": "npx copyfiles package.json yarn.lock readme.md .npmignore .publish",
