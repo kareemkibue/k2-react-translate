@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Router } from 'react-router-dom';
 import { History } from 'history';
 import { LocaleContext } from './LocaleContext';
-// import { localizedHistory } from './localizedHistory';
 import { getLanguageFromUrl } from './localizer';
 import { ITranslations } from './types';
 
