@@ -1,5 +1,5 @@
-import { createBrowserHistory, History as IHistory } from 'history';
+import { createBrowserHistory, History } from 'history';
 
-const localizedHistory: IHistory = createBrowserHistory();
+const localizedHistory: History = createBrowserHistory();
 
 export { localizedHistory };

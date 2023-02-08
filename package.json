@@ -1,6 +1,6 @@
 {
     "name": "k2-react-translate",
-    "version": "0.8.4",
+    "version": "0.8.5",
     "description": "A react translation library with optional routing",
     "main": "index.js",
     "types": "index.d.ts",
