@@ -27,7 +27,7 @@
         "build": "del-cli -f .publish && tsc -p tsconfig.prod.json",
         "test": "npx jest --coverage --passWithNoTests",
         "test:watch": "npx jest --watchAll --passWithNoTests",
-        "npm:copy": "npx copyfiles package.json yarn.lock readme.md .npmignore .publish",
+        "npm:copy": "npx copyfiles package.json yarn.lock readme.md .npmrc .npmignore .publish",
         "npm:prepare": "npm run build && npm test && npm run npm:copy",
         "npm:publish": "npm run npm:prepare && cd .publish && npm publish",
         "postpublish": "echo 'k2-react-translate has been published successfully to NPM.' ",
