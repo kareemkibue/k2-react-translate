@@ -26,13 +26,9 @@ const concatenateLanguageParam = (path: string): string => {
     return '/:language' + path;
 };
 
-const getLocalizedPath = (
-    path: string | string[]
-): string | string[] | undefined => {
+const getLocalizedPath = (path: string | string[]): string | string[] | undefined => {
     if (Array.isArray(path)) {
-        return path.map((singlePath: string) =>
-            concatenateLanguageParam(singlePath)
-        );
+        return path.map((singlePath: string) => concatenateLanguageParam(singlePath));
     }
     if (typeof path === 'string') {
         return concatenateLanguageParam(path);
@@ -41,17 +37,13 @@ const getLocalizedPath = (
     return undefined;
 };
 
-const getLanguageFromUrl = (languages: string[], url: string = window.location.pathname): string | null => {
-
-
-    return languages.find((language: string) => {
-        const regExp = new RegExp(`^/${language}`, 'i')
-        return url.search(regExp) >= 0
-    }) || null
-}
-
-export {
-    getLocalizedRoute,
-    getLocalizedPath,
-    getLanguageFromUrl
+const getLanguageFromUrl = (languages: string[], url: string): string | null => {
+    return (
+        languages.find((language: string) => {
+            const regExp = new RegExp(`^/${language}`, 'i');
+            return url.search(regExp) >= 0;
+        }) || null
+    );
 };
+
+export { getLocalizedRoute, getLocalizedPath, getLanguageFromUrl };

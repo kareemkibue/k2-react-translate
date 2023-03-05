@@ -95,12 +95,16 @@ class LocaleProvider extends React.Component<IProps, IState> {
     private getLanguageFromUrl = (): string | null => {
         const { languages } = this.props;
 
-        return getLanguageFromUrl(languages);
+        if (typeof window === 'undefined') {
+            return null;
+        }
+
+        return getLanguageFromUrl(languages, window.location.pathname);
     };
 
     private insertLanguageToUrl(language: string): void {
         const { history } = this.props;
-        const pathName: string = location.pathname + location.search;
+        const pathName: string = window.location.pathname + window.location.search;
         const url: string = `/${language + pathName}`;
         history?.push(url);
     }
