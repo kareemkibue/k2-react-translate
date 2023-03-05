@@ -48,7 +48,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
     }
 
     private getBrowserLanguage(): string | null {
-        if (typeof window === undefined) {
+        if (typeof window === 'undefined') {
             return null;
         }
 
