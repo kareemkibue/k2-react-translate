@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Router } from 'react-router-dom';
+// import { Router } from 'react-router-dom';
 import { History } from 'history';
 import { LocaleContext } from './LocaleContext';
 import { getLanguageFromUrl } from './localizer';
@@ -25,13 +25,13 @@ class LocaleProvider extends React.Component<IProps, IState> {
     };
 
     componentDidMount() {
-        this.resolveIntialLanguage();
+        this.getIntialLanguage();
     }
 
     /**
      * * Resolve the initiale language setting from hard setting or from the browser setting
      */
-    private resolveIntialLanguage(): void {
+    private getIntialLanguage(): string {
         const { defaultLanguage, languages, localizeUrls = false } = this.props;
         const urlLanguageSetting: string | null = this.getLanguageFromUrl();
         const browserLanguageSetting: string = navigator.language.split(/[-_]/)[0]; // * language without region code
@@ -43,6 +43,8 @@ class LocaleProvider extends React.Component<IProps, IState> {
         }
 
         this.setLanguage(resolvedLanguage);
+
+        return resolvedLanguage;
     }
 
     private getLanguageFromLocationState(): string | null {
@@ -238,16 +240,40 @@ class LocaleProvider extends React.Component<IProps, IState> {
     // 	return /<[a-z/][\s\S]*>/i.test(text);
     // }
 
+    // private async getComponent(): Promise<React.ReactNode> {
+    //     const { children, localizeUrls = false, history } = this.props;
+
+    //     if (localizeUrls && history) {
+    //         // import { Router } from 'react-router-dom';
+    //         const { Router } = await import('react-router-dom');
+    //         return <Router history={history}>{children}</Router>;
+    //     }
+
+    //     return children;
+    // }
+
+    // private getLanguage = (): string => {
+    //     return '';
+    // };
+
     render() {
-        const { translations, children, localizeUrls = false, history } = this.props;
+        const { translations, localizeUrls = false, history, children } = this.props;
         const { language } = this.state;
+        // const language = this.getLanguage();
 
         if (localizeUrls && !history) {
             throw new Error('Missing history prop from LocaleProvider');
         }
 
-        // * Only init app after language has been resolved
-        if (language && translations) {
+        //
+
+        if (!translations) {
+            throw new Error('Missing translations prop from LocaleProvider');
+        }
+
+        if (localizeUrls && history && language) {
+            const { Router } = require('react-router-dom');
+
             return (
                 <LocaleContext.Provider
                     value={{
@@ -257,8 +283,21 @@ class LocaleProvider extends React.Component<IProps, IState> {
                         performTranslation: this.performTranslation,
                         performTranslationAndParse: this.performTranslationAndParse,
                     }}>
-                    {/* // * https://reacttraining.com/react-router/web/api/Router/history-object */}
-                    {localizeUrls && history ? <Router history={history}>{children}</Router> : children}
+                    <Router history={history}>{children}</Router>
+                </LocaleContext.Provider>
+            );
+        }
+        if (!localizeUrls) {
+            return (
+                <LocaleContext.Provider
+                    value={{
+                        language: language || this.getIntialLanguage(),
+                        translations,
+                        changeLanguage: this.setLanguage,
+                        performTranslation: this.performTranslation,
+                        performTranslationAndParse: this.performTranslationAndParse,
+                    }}>
+                    {children}
                 </LocaleContext.Provider>
             );
         }
