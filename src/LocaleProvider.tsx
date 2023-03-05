@@ -34,7 +34,7 @@ class LocaleProvider extends React.Component<IProps, IState> {
     private getIntialLanguage(): string {
         const { defaultLanguage, languages, localizeUrls = false } = this.props;
         const urlLanguageSetting: string | null = this.getLanguageFromUrl();
-        const browserLanguageSetting: string = navigator.language.split(/[-_]/)[0]; // * language without region code
+        const browserLanguageSetting = this.getBrowserLanguage(); // * language without region code
         const resolvedLanguage: string =
             this.getLanguageFromLocationState() || defaultLanguage || browserLanguageSetting || languages[0];
 
@@ -47,8 +47,20 @@ class LocaleProvider extends React.Component<IProps, IState> {
         return resolvedLanguage;
     }
 
+    private getBrowserLanguage(): string | null {
+        if (typeof navigator === undefined) {
+            return null;
+        }
+
+        return navigator.language.split(/[-_]/)[0];
+    }
+
     private getLanguageFromLocationState(): string | null {
         const { localizeUrls = false } = this.props;
+
+        if (typeof window === 'undefined') {
+            return null;
+        }
 
         if (localizeUrls) {
             window.localStorage.removeItem('k2-lang');
