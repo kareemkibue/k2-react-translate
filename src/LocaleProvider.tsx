@@ -48,11 +48,11 @@ class LocaleProvider extends React.Component<IProps, IState> {
     }
 
     private getBrowserLanguage(): string | null {
-        if (typeof navigator === undefined) {
+        if (typeof window === undefined) {
             return null;
         }
 
-        return navigator.language.split(/[-_]/)[0];
+        return window.navigator.language.split(/[-_]/)[0];
     }
 
     private getLanguageFromLocationState(): string | null {
