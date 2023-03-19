@@ -78,7 +78,8 @@
     },
     "dependencies": {
         "add": "2.0.6",
-        "yarn": "1.22.10"
+        "yarn": "1.22.10",
+        "zustand": "^4.3.6"
     },
     "resolutions": {
         "@types/react": "16.14.2",

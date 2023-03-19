@@ -140,14 +140,14 @@ class LocaleProvider extends React.Component<IProps, IState> {
     ): void {
         const errorMap = {
             NO_CONFIG: '⛔ Translations not found!',
-            NO_KEY: `⛔ Missing Translation key: ${id.toUpperCase()}`,
-            NO_VAL: `⛔ Missing Translation to: ${id.toUpperCase()} => ${language.toUpperCase()}`,
-            NO_VAR: `⛔ Missing Variable { ${varKey} : string } in: ${id.toUpperCase()} => ${language.toUpperCase()}`,
+            NO_KEY: `⛔ Missing Translation key: ${id.toUpperCase()}"`,
+            NO_VAL: `⛔ Missing Translation to: ${id.toUpperCase()}"`,
+            NO_VAR: `⛔ Missing Variable { ${varKey} : string } in: ${id.toUpperCase()}"`,
         };
         const errorMessage: string = errorMap[errorCode];
 
         // eslint-disable-next-line no-console
-        console.error(errorMessage);
+        console.error(errorMessage, { language });
     }
 
     /**
