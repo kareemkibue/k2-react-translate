@@ -17,7 +17,7 @@ module.exports = {
 		clientLogLevel: 'error',
 		historyApiFallback: true,
 		hot: true,
-		open: true,
+		open: false,
 		quiet: true,
 		overlay: {
 			warnings: false,
@@ -50,14 +50,35 @@ module.exports = {
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'awesome-typescript-loader',
+						loader: 'babel-loader',
 						options: {
-							configFileName: paths.tsConfig,
-							transpileModule: true,
-							getCustomTransformers: () => ({
-								before: [styledComponentsTransformer],
-							}),
-							forceIsolatedModules: true,
+							// presets: [['@babel/preset-env', { targets: 'defaults' }]],
+
+							presets: [
+								'@babel/preset-env',
+								'@babel/preset-react',
+								'@babel/preset-typescript',
+							],
+							// plugins: [
+							// 	// ['@babel/plugin-transform-runtime', { regenerator: true }],
+							// 	// ['@babel/plugin-proposal-decorators', { legacy: true }],
+							// 	// '@babel/proposal-class-properties',
+							// 	// '@babel/plugin-proposal-object-rest-spread',
+							// 	// ['@babel/plugin-proposal-private-methods', { loose: false }],
+							// 	// [
+							// 	// 	'@babel/plugin-proposal-private-property-in-object',
+							// 	// 	{ loose: false },
+							// 	// ],
+							// 	'@babel/plugin-transform-typescript',
+							// 	'@babel/plugin-syntax-dynamic-import',
+							// ],
+
+							// configFileName: paths.tsConfig,
+							// transpileModule: true,
+							// getCustomTransformers: () => ({
+							// 	before: [styledComponentsTransformer],
+							// }),
+							// forceIsolatedModules: true,
 						},
 					},
 				],

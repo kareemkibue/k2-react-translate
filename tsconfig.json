@@ -24,6 +24,6 @@
         "strictNullChecks": true,
         "target": "es5"
     },
-    "include": ["./src", "./global.d.ts"],
+    "include": ["./src", "./global.d.ts","./demo"],
     "exclude": ["./tests/", "node_modules", ".publish"]
 }

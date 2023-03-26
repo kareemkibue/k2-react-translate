@@ -1,325 +1,268 @@
 import * as React from 'react';
+import { useEffect, FC } from 'react';
 // import { Router } from 'react-router-dom';
 import { History } from 'history';
-import { LocaleContext } from './LocaleContext';
+// import { LocaleContext } from './LocaleContext';
 import { getLanguageFromUrl } from './localizer';
-import { ITranslations } from './types';
+import { Translations } from './types';
+import { useTranslate } from './useTranslate';
 
 interface IProps {
-    defaultLanguage?: string;
-    languages: string[];
-    translations: ITranslations;
-    localizeUrls?: boolean; // * Manage languageCode in URL upon navigation, default=false
-    history?: History;
+	defaultLanguage?: string;
+	languages: string[];
+	translations: Translations;
+	localizeUrls?: boolean; // * Manage languageCode in URL upon navigation, default=false
+	history?: History;
 }
 
-interface IState {
-    language: string;
-}
+// interface IState {
+//     language: string;
+// }
 
-type TranslationVariables = { [field: string]: string | number };
+const LocaleProvider: FC<IProps> = (props) => {
+	const {
+		defaultLanguage,
+		translations,
+		children,
+		languages = [],
+		localizeUrls = false,
+		history,
+	} = props;
+	const { updateTranslations, updateLanguage: updateLanguageInStore, language } = useTranslate();
+	React.useMemo(() => {
+		updateTranslations(translations);
+	}, [translations]);
+	// const [language, setLanguage] = useState<string>('');
+	// class LocaleProvider extends React.Component<IProps, IState> {
+	// state = {
+	//     language: '',
+	// };
 
-class LocaleProvider extends React.Component<IProps, IState> {
-    state = {
-        language: '',
-    };
+	useEffect(() => {
+		console.log({ ...props });
 
-    componentDidMount() {
-        this.getIntialLanguage();
-    }
+		getIntialLanguage();
+	}, []);
 
-    /**
-     * * Resolve the initiale language setting from hard setting or from the browser setting
-     */
-    private getIntialLanguage(): string {
-        const { defaultLanguage, languages, localizeUrls = false } = this.props;
-        const urlLanguageSetting: string | null = this.getLanguageFromUrl();
-        const browserLanguageSetting = this.getBrowserLanguage(); // * language without region code
-        const resolvedLanguage: string =
-            this.getLanguageFromLocationState() || defaultLanguage || browserLanguageSetting || languages[0];
+	// componentDidMount() {
+	//     this.getIntialLanguage();
+	// }
 
-        if (localizeUrls && urlLanguageSetting === null) {
-            this.insertLanguageToUrl(resolvedLanguage);
-        }
+	/**
+	 * * Resolve the initiale language setting from hard setting or from the browser setting
+	 */
+	const getIntialLanguage = (): string => {
+		const urlLanguageSetting: string | null = getLanguageFromPageUrl();
+		const browserLanguageSetting = getBrowserLanguage(); // * language without region code
+		const resolvedLanguage: string =
+			getLanguageFromLocationState() ||
+			defaultLanguage ||
+			browserLanguageSetting ||
+			languages[0];
 
-        this.setLanguage(resolvedLanguage);
+		if (localizeUrls && urlLanguageSetting === null) {
+			insertLanguageToUrl(resolvedLanguage);
+		}
 
-        return resolvedLanguage;
-    }
+		updateLanguage(resolvedLanguage);
 
-    private getBrowserLanguage(): string | null {
-        if (typeof window === 'undefined') {
-            return null;
-        }
+		return resolvedLanguage;
+	};
 
-        return window.navigator.language.split(/[-_]/)[0];
-    }
+	const getBrowserLanguage = (): string | null => {
+		if (typeof window === 'undefined') {
+			return null;
+		}
 
-    private getLanguageFromLocationState(): string | null {
-        const { localizeUrls = false } = this.props;
+		return window.navigator.language.split(/[-_]/)[0];
+	};
 
-        if (typeof window === 'undefined') {
-            return null;
-        }
+	const getLanguageFromLocationState = (): string | null => {
+		// const { localizeUrls = false } = this.props;
 
-        if (localizeUrls) {
-            window.localStorage.removeItem('k2-lang');
-            return this.getLanguageFromUrl();
-        } else {
-            return window.localStorage.getItem('k2-lang') || '';
-        }
-    }
+		if (typeof window === 'undefined') {
+			return null;
+		}
 
-    private setLanguage = (language: string): void => {
-        const { languages, localizeUrls } = this.props;
-        const doesLanguageExist = languages.indexOf(language.toLowerCase()) > -1;
+		if (localizeUrls) {
+			window.localStorage.removeItem('k2-lang');
+			return getLanguageFromPageUrl();
+		} else {
+			return window.localStorage.getItem('k2-lang') || '';
+		}
+	};
 
-        if (doesLanguageExist) {
-            this.setState(
-                {
-                    language: language.toLowerCase(),
-                },
-                () => {
-                    if (localizeUrls) {
-                        this.updateUrl();
-                    } else {
-                        this.updateBrowserStorage();
-                    }
-                }
-            );
-        } else {
-            console.error('⛔ Selected language does not exist in the initial <LocaleProvider/> configuration!');
-        }
-    };
+	const updateLanguage = (updatedLanguage: string): void => {
+		// const { languages, localizeUrls } = this.props;
+		const doesLanguageExist = languages.indexOf(language.toLowerCase()) > -1;
 
-    private getLanguageFromUrl = (): string | null => {
-        const { languages } = this.props;
+		if (doesLanguageExist) {
+			updateLanguageInStore(updatedLanguage.toLowerCase());
 
-        if (typeof window === 'undefined') {
-            return null;
-        }
+			if (localizeUrls) {
+				updateUrl();
+			} else {
+				updateBrowserStorage();
+			}
+			// this.setState(
+			//     {
+			//         language: language.toLowerCase(),
+			//     },
+			//     () => {
+			//         if (localizeUrls) {
+			//             this.updateUrl();
+			//         } else {
+			//             this.updateBrowserStorage();
+			//         }
+			//     }
+			// );
+		} else {
+			console.error(
+				'⛔ Selected language does not exist in the initial <LocaleProvider/> configuration!'
+			);
+		}
+	};
 
-        return getLanguageFromUrl(languages, window.location.pathname);
-    };
+	const getLanguageFromPageUrl = (): string | null => {
+		// const { languages } = this.props;
 
-    private insertLanguageToUrl(language: string): void {
-        const { history } = this.props;
-        const pathName: string = window.location.pathname + window.location.search;
-        const url: string = `/${language + pathName}`;
-        history?.push(url);
-    }
+		if (typeof window === 'undefined') {
+			return null;
+		}
 
-    private updateUrl = (): void => {
-        const { languages, defaultLanguage, history } = this.props;
-        const { language: currentLanguage } = this.state;
-        const currentUrl: string = location.pathname + location.search;
-        let searchString: string = defaultLanguage || languages[0];
+		return getLanguageFromUrl(languages, window.location.pathname);
+	};
 
-        // TODO Adapt to languages set via Provider props
-        for (const language of languages) {
-            if (currentUrl.includes(language)) {
-                searchString = language;
-                break;
-            }
-        }
+	const insertLanguageToUrl = (language: string): void => {
+		// const { history } = this.props;
+		const pathName: string = window.location.pathname + window.location.search;
+		const url: string = `/${language + pathName}`;
+		history?.push(url);
+	};
 
-        const updatedUrl: string = currentUrl.replace(`/${searchString}/`, `/${currentLanguage}/`);
-        history?.push(updatedUrl);
-    };
+	const updateUrl = (): void => {
+		// const { languages, defaultLanguage, history } = this.props;
+		// const { language: currentLanguage } = this.state;
+		const currentUrl: string = location.pathname + location.search;
+		let searchString: string = defaultLanguage || languages[0];
 
-    private updateBrowserStorage(): void {
-        const { language } = this.state;
-        window.localStorage.setItem('k2-lang', language);
-    }
+		// TODO Adapt to languages set via Provider props
+		for (const language of languages) {
+			if (currentUrl.includes(language)) {
+				searchString = language;
+				break;
+			}
+		}
 
-    private handleError(
-        errorCode: 'NO_KEY' | 'NO_VAL' | 'NO_VAR' | 'NO_CONFIG',
-        language: string,
-        id: string,
-        varKey: string = ''
-    ): void {
-        const errorMap = {
-            NO_CONFIG: '⛔ Translations not found!',
-            NO_KEY: `⛔ Missing Translation key: ${id.toUpperCase()}"`,
-            NO_VAL: `⛔ Missing Translation to: ${id.toUpperCase()}"`,
-            NO_VAR: `⛔ Missing Variable { ${varKey} : string } in: ${id.toUpperCase()}"`,
-        };
-        const errorMessage: string = errorMap[errorCode];
+		// const updatedUrl: string = currentUrl.replace(`/${searchString}/`, `/${currentLanguage}/`);
+		const updatedUrl: string = currentUrl.replace(`/${searchString}/`, `/${language}/`);
+		history?.push(updatedUrl);
+	};
 
-        // eslint-disable-next-line no-console
-        console.error(errorMessage, { language });
-    }
+	const updateBrowserStorage = (): void => {
+		// const { language } = this.state;
+		window.localStorage.setItem('k2-lang', language);
+	};
 
-    /**
-     * Check if searchedString and replaced string as the same
-     * If the text is the same, then return true
-     * @param searchedString
-     * @param replacedString
-     */
-    private compareSearchedAndReplacedString(searchedString: string, replacedString: string): boolean {
-        return searchedString.toLowerCase() === replacedString.toLowerCase();
-    }
+	/**
+	 * Check if searchedString and replaced string as the same
+	 * If the text is the same, then return true
+	 * @param searchedString
+	 * @param replacedString
+	 */
 
-    /**
-     * * Perfroms variables search/replace of vars on the set translation
-     * @param textToReplaceVars
-     * @param searchValue
-     * @param replaceValue
-     * @param varKey
-     */
-    private replaceVars(
-        textToReplaceVars: string,
-        searchValue: string,
-        replaceValue: string,
-        id: string,
-        varKey: string
-    ): string {
-        const searchRegex = new RegExp(searchValue, 'gi');
-        const textWithReplacedVars: string = textToReplaceVars.replace(searchRegex, replaceValue);
+	// const performTranslation = (id: string | null | undefined | false, vars?: TranslationVariables): string => {
+	//     // const { language } = this.state;
+	//     // const { translations } = this.props;
 
-        // * Checks if variable is missing from the translation doc
-        const isVarReplacementSuccessful: boolean = !this.compareSearchedAndReplacedString(
-            textToReplaceVars,
-            textWithReplacedVars
-        );
+	//     if (!id) {
+	//         return `⛔ Missing translation key`;
+	//     }
 
-        if (isVarReplacementSuccessful === false) {
-            this.handleError('NO_VAR', varKey, id);
-        }
+	//     if (!translations) {
+	//         handleError('NO_CONFIG', language, id);
+	//         return `⛔ ${id.toUpperCase()}`;
+	//     } else if (!translations[id]) {
+	//         handleError('NO_KEY', language, id);
+	//         return `⛔ ${id.toUpperCase()}`;
+	//     } else if (!translations[id][language]) {
+	//         handleError('NO_KEY', language, id);
+	//         return `⛔ ${id.toUpperCase()} - ${language.toUpperCase()}`;
+	//     } else {
+	//         const translatedText: string = translations[id][language];
 
-        return textWithReplacedVars;
-    }
+	//         if (vars) {
+	//             return processVars(id, translatedText, vars);
+	//         }
 
-    /**
-     * Process variables provided as props
-     * @param translatedText
-     */
-    private processVars(id: string, translatedText: string, vars: TranslationVariables = {}): string {
-        const varKeys: string[] = Object.keys(vars) || [];
-        let parsedText: string = translatedText;
+	//         return translatedText;
+	//     }
+	// };
 
-        varKeys.forEach((varKey: string) => {
-            // * Trim key to allow for consistency when translating
-            const searchValue: string = `{${varKey.trim()}}`;
-            // * Needs to be converted into a string becauase input can either be a string/number
-            const replaceValue: string = vars[varKey].toString().trim();
+	// const performTranslationAndParse = (id: string, vars?: TranslationVariables): React.ReactNode => {
+	//     const translatedText: string = performTranslation(id, vars);
+	//     // const isHtml: boolean = this.checkIfStringIsHtml(translatedText);
+	//     // * If parseText is false, the don't parseHTML. Otherwise parseHTML by default
+	//     // const parseTranslatedText: boolean = !parseHtml ? false : isHtml;
 
-            parsedText = this.replaceVars(parsedText, searchValue, replaceValue, varKey, id);
-        });
+	//     return <span dangerouslySetInnerHTML={{ __html: translatedText }} />;
+	// };
 
-        return parsedText;
-    }
+	/**
+	 * * Checks if the translated text is HTML
+	 * https://stackoverflow.com/questions/15458876/check-if-a-string-is-html-or-not/15458987
+	 * @param text
+	 */
+	// private checkIfStringIsHtml(text: string): boolean {
+	// 	return /<[a-z/][\s\S]*>/i.test(text);
+	// }
 
-    private performTranslation = (id: string | null | undefined | false, vars?: TranslationVariables): string => {
-        const { language } = this.state;
-        const { translations } = this.props;
+	// private async getComponent(): Promise<React.ReactNode> {
+	//     const { children, localizeUrls = false, history } = this.props;
 
-        if (!id) {
-            return `⛔ Missing translation key`;
-        }
+	//     if (localizeUrls && history) {
+	//         // import { Router } from 'react-router-dom';
+	//         const { Router } = await import('react-router-dom');
+	//         return <Router history={history}>{children}</Router>;
+	//     }
 
-        if (!translations) {
-            this.handleError('NO_CONFIG', language, id);
-            return `⛔ ${id.toUpperCase()}`;
-        } else if (!translations[id]) {
-            this.handleError('NO_KEY', language, id);
-            return `⛔ ${id.toUpperCase()}`;
-        } else if (!translations[id][language]) {
-            this.handleError('NO_KEY', language, id);
-            return `⛔ ${id.toUpperCase()} - ${language.toUpperCase()}`;
-        } else {
-            const translatedText: string = translations[id][language];
+	//     return children;
+	// }
 
-            if (vars) {
-                return this.processVars(id, translatedText, vars);
-            }
+	// private getLanguage = (): string => {
+	//     return '';
+	// };
 
-            return translatedText;
-        }
-    };
+	// render() {
+	// const { translations, localizeUrls = false, history, children } = this.props;
+	// const { language } = this.state;
+	// const language = this.getLanguage();
 
-    private performTranslationAndParse = (id: string, vars?: TranslationVariables): React.ReactNode => {
-        const translatedText: string = this.performTranslation(id, vars);
-        // const isHtml: boolean = this.checkIfStringIsHtml(translatedText);
-        // * If parseText is false, the don't parseHTML. Otherwise parseHTML by default
-        // const parseTranslatedText: boolean = !parseHtml ? false : isHtml;
+	if (localizeUrls && !history) {
+		throw new Error('Missing history prop from LocaleProvider');
+	}
 
-        return <span dangerouslySetInnerHTML={{ __html: translatedText }} />;
-    };
+	//
 
-    /**
-     * * Checks if the translated text is HTML
-     * https://stackoverflow.com/questions/15458876/check-if-a-string-is-html-or-not/15458987
-     * @param text
-     */
-    // private checkIfStringIsHtml(text: string): boolean {
-    // 	return /<[a-z/][\s\S]*>/i.test(text);
-    // }
+	if (!translations) {
+		throw new Error('Missing translations prop from LocaleProvider');
+	}
 
-    // private async getComponent(): Promise<React.ReactNode> {
-    //     const { children, localizeUrls = false, history } = this.props;
+	if (localizeUrls && history && language) {
+		const { Router } = require('react-router-dom');
 
-    //     if (localizeUrls && history) {
-    //         // import { Router } from 'react-router-dom';
-    //         const { Router } = await import('react-router-dom');
-    //         return <Router history={history}>{children}</Router>;
-    //     }
+		return (
+			<>
+				<Router history={history}>{children}</Router>
+			</>
+		);
+	}
+	if (!localizeUrls) {
+		return <>{children}</>;
+	}
 
-    //     return children;
-    // }
-
-    // private getLanguage = (): string => {
-    //     return '';
-    // };
-
-    render() {
-        const { translations, localizeUrls = false, history, children } = this.props;
-        const { language } = this.state;
-        // const language = this.getLanguage();
-
-        if (localizeUrls && !history) {
-            throw new Error('Missing history prop from LocaleProvider');
-        }
-
-        //
-
-        if (!translations) {
-            throw new Error('Missing translations prop from LocaleProvider');
-        }
-
-        if (localizeUrls && history && language) {
-            const { Router } = require('react-router-dom');
-
-            return (
-                <LocaleContext.Provider
-                    value={{
-                        language,
-                        translations,
-                        changeLanguage: this.setLanguage,
-                        performTranslation: this.performTranslation,
-                        performTranslationAndParse: this.performTranslationAndParse,
-                    }}>
-                    <Router history={history}>{children}</Router>
-                </LocaleContext.Provider>
-            );
-        }
-        if (!localizeUrls) {
-            return (
-                <LocaleContext.Provider
-                    value={{
-                        language: language || this.getIntialLanguage(),
-                        translations,
-                        changeLanguage: this.setLanguage,
-                        performTranslation: this.performTranslation,
-                        performTranslationAndParse: this.performTranslationAndParse,
-                    }}>
-                    {children}
-                </LocaleContext.Provider>
-            );
-        }
-
-        return null;
-    }
-}
+	return null;
+};
+// }
 
 export { LocaleProvider };

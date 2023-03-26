@@ -5,7 +5,7 @@ import { Status } from '../Status';
 
 const About: React.FunctionComponent<RouteComponentProps> = (props) => {
 	const { match } = props;
-	const { translate } = useTranslate<string>();
+	const { translate } = useTranslate();
 
 	return (
 		<>

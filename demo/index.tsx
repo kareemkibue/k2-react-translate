@@ -9,13 +9,13 @@ import translations from './translations.json';
 const localizeUrls = true;
 
 ReactDOM.render(
-    <LocaleProvider
-        translations={translations}
-        languages={['en', 'fr', 'sw']}
-        defaultLanguage="en"
-        localizeUrls={localizeUrls}
-        history={localizedHistory}>
-        {localizeUrls ? <App /> : <Home />}
-    </LocaleProvider>,
-    document.getElementById('root')
+	<LocaleProvider
+		translations={translations}
+		languages={['en', 'fr', 'sw']}
+		defaultLanguage="en"
+		localizeUrls={localizeUrls}
+		history={localizedHistory}>
+		{localizeUrls ? <App /> : <Home />}
+	</LocaleProvider>,
+	document.getElementById('root')
 );

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { colors } from './settings/colors';
 import { fontFamilies, fontSizes, fontWeights } from './settings/fonts';
 
-const AppStyles = createGlobalStyle`
+const AppStyles: any = createGlobalStyle`
     html, body{
         min-height: 100vh;
     }
@@ -19,6 +19,6 @@ const AppStyles = createGlobalStyle`
         font-size: ${fontSizes.f72};
         font-weight: ${fontWeights.normal};
     }
-`
+`;
 
-export { AppStyles }
+export { AppStyles };
